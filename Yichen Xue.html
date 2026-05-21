@@ -1,0 +1,1277 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Yichen Xue — Baritone</title>
+<meta name="description" content="Yichen Xue — American baritone. Press portfolio, recordings, and upcoming engagements." />
+
+<!--
+  ================================================================
+   PLACEHOLDERS — drop your real assets / URLs here
+  ================================================================
+   FONTS:
+     ./fonts/Vogue.woff2      → high-contrast Didone, display only
+     ./fonts/Scholar.woff2    → serif, all body / nav / labels
+   REEL_VIDEO:
+     Replace the <video> src below (or swap the <video> element for an <iframe>)
+   RESUME_URL:
+     The "Download Résumé" button href — currently "#RESUME_URL"
+   SPOTIFY_URL:
+     Recordings + Contact links — currently "#SPOTIFY_URL"
+  ================================================================
+-->
+
+<!-- Editorial fallback for the custom "Vogue" Didone until the real file is supplied -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;0,6..96,800;1,6..96,400&display=swap" rel="stylesheet" />
+
+<style>
+/* ---------- CUSTOM FONTS (placeholders supplied by client) ---------- */
+@font-face {
+  font-family: "Vogue";
+  src: url("./fonts/Vogue.ttf") format("truetype");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Scholar";
+  src: url("./fonts/scholar-regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Scholar";
+  src: url("./fonts/scholar-italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ---------- TOKENS ---------- */
+:root {
+  --forest:   #0B2418;
+  --navy:     #0A1128;
+  --navy-mid: #131E45;
+  --navy-hi:  #1F2D6A;
+  --oxblood:  #32181C;
+  --cream:    #FDFCF8;
+  --black:    #000000;
+  --muted:    rgba(253, 252, 248, 0.62);
+  --hair:     rgba(253, 252, 248, 0.16);
+  --gold:     #B7935A;
+
+  --display:  "Vogue", "Bodoni Moda", "Didot", "Bodoni 72", serif;
+  --body:     "Scholar", Georgia, "Times New Roman", serif;
+
+  --gutter:   clamp(20px, 4vw, 64px);
+  --maxw:     1320px;
+
+  /* Reel frame inset — % of wrapper, tune to match the molding on your Frame.png */
+  --frame-inset-x: 7.2%;
+  --frame-inset-y: 12.4%;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--black);
+  color: var(--cream);
+  font-family: var(--body);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+
+/* ---------- GRAIN — subtle film noise overlaid on dark grounds ---------- */
+.grain::after {
+  content: "";
+  position: absolute; inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1   0 0 0 0 1   0 0 0 0 1   0 0 0 0.5 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  background-size: 240px 240px;
+  z-index: 2;
+}
+
+/* ---------- TYPE ---------- */
+.display {
+  font-family: var(--display);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 0.92;
+}
+.eyebrow {
+  font-family: var(--body);
+  text-transform: uppercase;
+  letter-spacing: 0.36em;
+  font-size: 10px;
+  color: var(--muted);
+}
+.lede {
+  font-size: clamp(15px, 1.2vw, 18px);
+  line-height: 1.6;
+  color: var(--cream);
+}
+
+/* ---------- LAYOUT ---------- */
+.wrap {
+  width: 100%;
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  position: relative;
+}
+section { position: relative; }
+.section-pad { padding: clamp(72px, 9vw, 130px) 0; }
+.hair { height: 1px; background: var(--hair); border: 0; margin: 0; }
+
+/* ---------- NAV ---------- */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  z-index: 50;
+  padding: 18px var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.55), rgba(0,0,0,0));
+  transition: background 480ms ease, backdrop-filter 480ms ease, padding 320ms ease;
+}
+.nav.solid {
+  background: rgba(7, 14, 10, 0.86);
+  backdrop-filter: blur(10px) saturate(120%);
+  -webkit-backdrop-filter: blur(10px) saturate(120%);
+  padding-top: 14px; padding-bottom: 14px;
+  border-bottom: 1px solid var(--hair);
+}
+.nav .mark {
+  font-family: var(--display);
+  font-size: 15px;
+  letter-spacing: 0.28em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.nav ul {
+  list-style: none; margin: 0 auto; padding: 0;
+  display: flex;
+  gap: clamp(14px, 1.9vw, 30px);
+  font-size: 10px;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+}
+.nav ul a { position: relative; padding: 6px 0; color: var(--cream); opacity: 0.82; transition: opacity 200ms ease; }
+.nav ul a::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0;
+  height: 1px; background: var(--cream); transform: scaleX(0);
+  transform-origin: left center; transition: transform 360ms ease;
+}
+.nav ul a:hover { opacity: 1; }
+.nav ul a:hover::after { transform: scaleX(1); }
+.nav .inquiry {
+  font-family: var(--body);
+  font-size: 10px;
+  letter-spacing: 0.36em;
+  text-transform: uppercase;
+  padding: 9px 18px;
+  border: 1px solid var(--cream);
+  color: var(--cream);
+  transition: background 240ms ease, color 240ms ease;
+}
+.nav .inquiry:hover { background: var(--cream); color: var(--black); }
+.nav-toggle { display: none; }
+
+@media (max-width: 880px) {
+  .nav ul { display: none; }
+  .nav { justify-content: space-between; }
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+}
+.hero-ground {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(120% 80% at 50% 38%, #1A2752 0%, #0E1838 28%, #0A1128 55%, #050814 78%, #000000 100%);
+}
+.hero-vignette {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(60% 45% at 50% 42%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 80%, rgba(0,0,0,0.55) 100%);
+  pointer-events: none;
+}
+.hero-inner {
+  position: relative;
+  z-index: 1;
+  height: 100svh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  padding: clamp(96px, 12vw, 140px) var(--gutter) clamp(40px, 5vw, 64px);
+}
+.masthead {
+  position: absolute;
+  left: 0; right: 0;
+  top: clamp(150px, 19vw, 250px);
+  text-align: center;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(44px, 8.4vw, 124px);
+  letter-spacing: 0.01em;
+  line-height: 0.92;
+  color: var(--cream);
+  white-space: nowrap;
+  user-select: none;
+  z-index: 1;
+  text-shadow: 0 2px 40px rgba(0,0,0,0.35);
+}
+.masthead .ampline {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.46em;
+  font-family: var(--body);
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-top: 22px;
+}
+.hero-cutout {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  transform: translateX(-50%);
+  height: min(86svh, 880px);
+  width: auto;
+  max-width: 96vw;
+  object-fit: contain;
+  object-position: bottom center;
+  /* In front of masthead, behind sub-text + nav */
+  z-index: 2;
+  filter:
+    drop-shadow(0 30px 60px rgba(0,0,0,0.55))
+    contrast(1.02);
+  /* Soft fade at the bottom edge to vanish into the gradient ground */
+  -webkit-mask-image: linear-gradient(to bottom, #000 78%, rgba(0,0,0,0) 100%);
+          mask-image: linear-gradient(to bottom, #000 78%, rgba(0,0,0,0) 100%);
+}
+.hero-lower {
+  position: relative;
+  /* Sub-text drawn IN FRONT of the cutout */
+  z-index: 3;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 32px;
+  grid-row: 2;
+  align-self: end;
+}
+.hero-lower .role {
+  font-family: var(--body);
+  font-size: 10px;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  color: var(--cream);
+  display: flex; align-items: center; gap: 16px;
+}
+.hero-lower .role::before {
+  content: ""; display: inline-block; width: 44px; height: 1px; background: var(--cream);
+}
+.hero-lower .tagline {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(13px, 1.2vw, 17px);
+  letter-spacing: 0.01em;
+  line-height: 1.4;
+  max-width: 34ch;
+  text-align: right;
+  color: var(--cream);
+  opacity: 0.88;
+}
+.hero-meta {
+  position: absolute;
+  z-index: 3;
+  top: clamp(92px, 11vw, 130px);
+  left: var(--gutter);
+  font-size: 9px;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.hero-meta-right {
+  position: absolute;
+  z-index: 3;
+  top: clamp(92px, 11vw, 130px);
+  right: var(--gutter);
+  font-size: 9px;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: right;
+}
+
+@media (max-width: 720px) {
+  .masthead { font-size: clamp(40px, 12vw, 72px); top: 18svh; letter-spacing: 0.01em; }
+  .hero-lower { flex-direction: column; align-items: flex-start; }
+  .hero-lower .tagline { text-align: left; }
+  .hero-meta, .hero-meta-right { display: none; }
+  .hero-cutout { height: 72svh; }
+}
+
+/* ---------- SECTION HEADINGS ---------- */
+.section-head {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: clamp(40px, 5vw, 72px);
+  align-items: end;
+}
+.section-head .num {
+  font-family: var(--body);
+  font-size: 10px;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.section-head h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(42px, 6.4vw, 96px);
+  letter-spacing: -0.015em;
+  line-height: 0.95;
+}
+.section-head .kicker {
+  font-family: var(--body);
+  font-size: 12px;
+  line-height: 1.65;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  max-width: 48ch;
+}
+
+/* ---------- PERFORMANCE TABLE ---------- */
+.perf {
+  background:
+    linear-gradient(to bottom, #0A1128 0%, #060B1C 45%, #03060F 75%, #000 100%);
+}
+.perf .group { position: relative; }
+.perf .group-label {
+  display: flex; align-items: center; gap: 18px;
+  font-family: var(--body);
+  font-size: 10px;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 56px 0 18px;
+}
+.perf .group-label::after {
+  content: ""; flex: 1; height: 1px; background: var(--hair);
+}
+.row {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1.6fr) minmax(0, 1.1fr) minmax(0, 1.2fr);
+  gap: 24px;
+  padding: 22px 0;
+  border-bottom: 1px solid var(--hair);
+  align-items: baseline;
+}
+.row:first-of-type { border-top: 1px solid var(--hair); }
+.row .date {
+  font-family: var(--body);
+  letter-spacing: 0.2em;
+  font-size: 11px;
+  color: var(--muted);
+}
+.row .prod {
+  font-family: var(--display);
+  font-size: clamp(20px, 2vw, 28px);
+  letter-spacing: -0.005em;
+  line-height: 1.1;
+}
+.row .role {
+  font-family: var(--body);
+  font-style: italic;
+  font-size: 13px;
+  color: var(--cream);
+  opacity: 0.86;
+}
+.row .house {
+  font-family: var(--body);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+@media (max-width: 760px) {
+  .row {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    padding: 20px 0;
+  }
+  .row .prod { font-size: 22px; }
+}
+
+.expand {
+  margin: 44px 0 0;
+  display: inline-flex; align-items: center; gap: 16px;
+  font-family: var(--body);
+  font-size: 10px;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  color: var(--cream);
+  padding: 12px 0;
+}
+.expand .chev { display: inline-block; width: 36px; height: 1px; background: var(--cream); position: relative; }
+.expand .chev::after {
+  content: ""; position: absolute; right: -1px; top: -3px;
+  width: 7px; height: 7px; border-right: 1px solid var(--cream); border-bottom: 1px solid var(--cream);
+  transform: rotate(45deg); transition: transform 320ms ease;
+}
+.expand[aria-expanded="true"] .chev::after { transform: rotate(-135deg); }
+.recent, .concerts { display: none; }
+.recent.open, .concerts.open { display: block; }
+
+/* ---------- REEL ---------- */
+.reel {
+  background:
+    radial-gradient(80% 60% at 50% 40%, #16235A 0%, #0A1128 40%, #050B1C 70%, #000 100%);
+}
+.reel-stage {
+  position: relative;
+  width: min(900px, 100%);
+  margin: 0 auto;
+  aspect-ratio: 16 / 11.2; /* matches the outer of frame.png */
+  /* Warm golden ambient glow behind the frame */
+  filter: drop-shadow(0 30px 70px rgba(0,0,0,0.7));
+}
+.reel-stage::before {
+  content: "";
+  position: absolute;
+  inset: -8% -6%;
+  background: radial-gradient(60% 50% at 50% 50%, rgba(183, 147, 90, 0.28) 0%, rgba(183, 147, 90, 0.08) 50%, rgba(183, 147, 90, 0) 80%);
+  filter: blur(20px);
+  z-index: 0;
+  pointer-events: none;
+}
+.reel-stage .video {
+  position: absolute;
+  /* Inset video so its edges tuck just under the inner lip of the frame.
+     Tune these CSS variables — :root --frame-inset-x / --frame-inset-y. */
+  top:    var(--frame-inset-y);
+  bottom: var(--frame-inset-y);
+  left:   var(--frame-inset-x);
+  right:  var(--frame-inset-x);
+  background: #000;
+  z-index: 1;
+  overflow: hidden;
+}
+.reel-stage .video video,
+.reel-stage .video iframe {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  border: 0;
+  display: block;
+  background: #000;
+}
+.reel-stage .frame {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 2;
+  object-fit: contain;
+}
+.reel-caption {
+  margin-top: 32px;
+  text-align: center;
+  font-family: var(--body);
+  font-size: 10px;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---------- BIOGRAPHY ---------- */
+.bio {
+  background:
+    linear-gradient(180deg, #0A1128 0%, #060B1C 55%, #02050E 85%, #000 100%);
+}
+.bio-grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(28px, 4vw, 72px);
+  align-items: start;
+}
+.bio-portrait {
+  position: relative;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: #0B0F0C;
+}
+.bio-portrait img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  filter: contrast(1.02) saturate(0.95);
+}
+.bio-portrait::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.4) 100%);
+  pointer-events: none;
+}
+.bio-caption {
+  margin-top: 14px;
+  font-family: var(--body);
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.bio-body {
+  font-family: var(--body);
+  font-size: clamp(14px, 1vw, 15px);
+  line-height: 1.8;
+  color: var(--cream);
+  text-wrap: pretty;
+}
+.bio-body p { margin: 0 0 1.2em; }
+.bio-body .dropcap::first-letter {
+  font-family: var(--display);
+  font-size: 4em;
+  float: left;
+  line-height: 0.86;
+  padding: 6px 14px 0 0;
+  color: var(--cream);
+}
+.bio-pull {
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(18px, 1.9vw, 24px);
+  line-height: 1.3;
+  color: var(--cream);
+  padding: 24px 0;
+  border-top: 1px solid var(--hair);
+  border-bottom: 1px solid var(--hair);
+  margin: 32px 0;
+}
+.bio-meta {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px 36px;
+  margin-top: 32px;
+}
+.bio-meta dt {
+  font-family: var(--body);
+  font-size: 9px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.bio-meta dd { margin: 0; font-family: var(--body); font-size: 13px; }
+
+.bio-inset {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(28px, 4vw, 72px);
+  align-items: center;
+  margin-top: clamp(60px, 7vw, 110px);
+}
+.bio-inset.flip { grid-template-columns: 7fr 5fr; }
+.bio-inset img {
+  width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  filter: contrast(1.02) saturate(0.95);
+}
+.bio-inset .text h3 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(26px, 2.6vw, 40px);
+  line-height: 1;
+  margin: 0 0 14px;
+  letter-spacing: -0.005em;
+}
+.bio-inset .text p { margin: 0; color: var(--muted); max-width: 42ch; font-size: 13px; line-height: 1.7; }
+
+@media (max-width: 820px) {
+  .bio-grid, .bio-inset, .bio-inset.flip { grid-template-columns: 1fr; }
+  .bio-meta { grid-template-columns: 1fr; }
+}
+
+/* ---------- RECORDINGS ---------- */
+.records {
+  background: linear-gradient(180deg, #050A1A 0%, #0A1128 45%, #050913 80%, #000 100%);
+}
+.records-grid {
+  display: grid;
+  grid-template-columns: 5fr 7fr;
+  gap: clamp(28px, 4vw, 72px);
+  align-items: center;
+}
+.records .sleeve {
+  aspect-ratio: 1 / 1;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, #1A2752 0%, #0A1128 55%, #02040E 100%);
+  border: 1px solid var(--hair);
+}
+.records .sleeve::before,
+.records .sleeve::after {
+  content: ""; position: absolute; inset: 18%; border-radius: 50%;
+  border: 1px solid var(--hair);
+}
+.records .sleeve::after { inset: 38%; border-color: rgba(253,252,248,0.32); }
+.records .sleeve .label {
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  transform: translateY(-50%);
+  text-align: center;
+  font-family: var(--display);
+  letter-spacing: 0.04em;
+  font-size: 18px;
+  color: var(--cream);
+}
+.records .sleeve .label small {
+  display: block;
+  margin-top: 10px;
+  font-family: var(--body);
+  font-size: 9px;
+  letter-spacing: 0.5em;
+  color: var(--muted);
+}
+.records-body p { color: var(--muted); max-width: 48ch; }
+.records-body .listen {
+  margin-top: 28px;
+  display: inline-flex; align-items: center; gap: 14px;
+  padding: 12px 22px;
+  border: 1px solid var(--cream);
+  font-size: 10px;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  transition: background 240ms ease, color 240ms ease;
+}
+.records-body .listen:hover { background: var(--cream); color: var(--black); }
+@media (max-width: 820px) { .records-grid { grid-template-columns: 1fr; } }
+
+/* ---------- GALLERY ---------- */
+.gallery {
+  background: linear-gradient(180deg, #000 0%, #050917 50%, #0A1128 100%);
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: clamp(14px, 1.6vw, 24px);
+}
+.tile {
+  position: relative;
+  overflow: hidden;
+  background: #0A0E0B;
+  cursor: pointer;
+}
+.tile img {
+  width: 100%; height: 100%; object-fit: cover;
+  transition: transform 900ms cubic-bezier(.2,.7,.2,1), filter 600ms ease;
+  filter: brightness(0.92) contrast(1.04) saturate(0.92);
+}
+.tile:hover img { transform: scale(1.035); filter: brightness(1) contrast(1.05) saturate(0.96); }
+.tile .cap {
+  position: absolute; left: 18px; right: 18px; bottom: 16px;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
+  z-index: 2;
+}
+.tile .cap .title {
+  font-family: var(--display); font-size: clamp(14px, 1.2vw, 18px); letter-spacing: -0.005em;
+}
+.tile .cap .meta {
+  font-family: var(--body); font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted);
+}
+.tile::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0) 45%);
+  pointer-events: none; z-index: 1;
+}
+.tile.lg { grid-column: span 7; aspect-ratio: 4 / 5; }
+.tile.md { grid-column: span 5; aspect-ratio: 4 / 5; }
+.tile.wd { grid-column: span 7; aspect-ratio: 3 / 2; }
+.tile.sm { grid-column: span 5; aspect-ratio: 3 / 2; }
+@media (max-width: 760px) {
+  .tile.lg, .tile.md, .tile.wd, .tile.sm { grid-column: span 12; aspect-ratio: 4 / 5; }
+}
+
+/* ---------- WORKED WITH ---------- */
+.worked {
+  background: linear-gradient(180deg, #0A1128 0%, #060B1C 50%, #000 100%);
+}
+.worked-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 48px 80px;
+}
+.worked .group h4 {
+  margin: 0 0 16px;
+  font-family: var(--body);
+  font-size: 10px;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding-bottom: 12px;
+  border-bottom: 1px solid var(--hair);
+}
+.worked .group ul {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.worked .group li {
+  font-family: var(--display);
+  font-size: clamp(18px, 1.5vw, 22px);
+  letter-spacing: -0.005em;
+  line-height: 1.2;
+}
+@media (max-width: 720px) { .worked-grid { grid-template-columns: 1fr; gap: 36px; } }
+
+/* ---------- AWARDS / EDUCATION ---------- */
+.awards { background: linear-gradient(180deg, #000 0%, #060B1C 45%, #0A1128 100%); }
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(48px, 6vw, 96px);
+}
+.list-rows li {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  gap: 18px;
+  padding: 18px 0;
+  border-bottom: 1px solid var(--hair);
+  align-items: baseline;
+}
+.list-rows { list-style: none; padding: 0; margin: 0; }
+.list-rows li:first-child { border-top: 1px solid var(--hair); }
+.list-rows .yr { font-family: var(--body); font-size: 11px; letter-spacing: 0.2em; color: var(--muted); }
+.list-rows .ttl { font-family: var(--display); font-size: clamp(16px, 1.4vw, 20px); line-height: 1.2; }
+.list-rows .where { font-family: var(--body); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-align: right; }
+.col-head {
+  font-family: var(--body); font-size: 10px; letter-spacing: 0.46em; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 22px;
+}
+@media (max-width: 820px) {
+  .two-col { grid-template-columns: 1fr; }
+  .list-rows li { grid-template-columns: 1fr; gap: 4px; }
+  .list-rows .where { text-align: left; }
+}
+
+/* ---------- INQUIRY ---------- */
+.inquiry-sec {
+  background:
+    radial-gradient(80% 60% at 50% 30%, #1F2D6A 0%, #0A1128 40%, #050913 72%, #000 100%);
+  text-align: center;
+}
+.inquiry-sec h2 {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(54px, 8.8vw, 140px);
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  margin: 14px 0 0;
+}
+.inquiry-sec .lede { max-width: 50ch; margin: 24px auto 0; color: var(--cream); opacity: 0.82; }
+.inquiry-actions {
+  display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+  margin-top: 40px;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 14px;
+  font-family: var(--body);
+  font-size: 10px;
+  letter-spacing: 0.46em;
+  text-transform: uppercase;
+  padding: 15px 26px;
+  border: 1px solid var(--cream);
+  color: var(--cream);
+  transition: background 240ms ease, color 240ms ease;
+}
+.btn.solid { background: var(--cream); color: var(--black); }
+.btn:hover { background: var(--cream); color: var(--black); }
+.btn.solid:hover { background: transparent; color: var(--cream); }
+.inquiry-meta {
+  margin-top: 48px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  max-width: 700px; margin-left: auto; margin-right: auto;
+  border-top: 1px solid var(--hair);
+  border-bottom: 1px solid var(--hair);
+  padding: 24px 0;
+}
+.inquiry-meta div { font-family: var(--body); font-size: 11px; letter-spacing: 0.18em; }
+.inquiry-meta div .lbl { display: block; font-size: 9px; letter-spacing: 0.46em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+@media (max-width: 720px) {
+  .inquiry-meta { grid-template-columns: 1fr; }
+}
+
+/* ---------- FOOTER ---------- */
+.footer {
+  background: linear-gradient(180deg, #0A1128 0%, #050913 50%, #000 100%);
+  padding: clamp(80px, 9vw, 120px) 0 48px;
+  position: relative;
+}
+.footer-wordmark {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(40px, 8.6vw, 140px);
+  letter-spacing: 0.04em;
+  line-height: 0.95;
+  text-align: center;
+  margin: 0 0 56px;
+}
+.footer-meta {
+  display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px;
+  font-family: var(--body); font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted);
+  border-top: 1px solid var(--hair);
+  padding-top: 22px;
+}
+.footer-meta a:hover { color: var(--cream); }
+
+/* ---------- REVEAL ON SCROLL ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 1.1s cubic-bezier(.2,.6,.2,1), transform 1.1s cubic-bezier(.2,.6,.2,1);
+  will-change: opacity, transform;
+}
+.reveal.in { opacity: 1; transform: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav" id="nav" aria-label="Primary">
+  <a class="mark" href="#top">Yichen&nbsp;Xue</a>
+  <ul>
+    <li><a href="#performance">Performance</a></li>
+    <li><a href="#repertoire">Repertoire</a></li>
+    <li><a href="#biography">Biography</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#recordings">Recordings</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="inquiry" href="#contact">Inquiry</a>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero grain" id="top">
+  <div class="hero-ground"></div>
+  <div class="hero-vignette"></div>
+
+  <div class="hero-meta">No. 01 · Volume MMXXVI</div>
+  <div class="hero-meta-right">A press portfolio</div>
+
+  <h1 class="masthead" aria-label="Yichen Xue">
+    YICHEN&nbsp;XUE
+    <span class="ampline">Baritone · The American Voice Issue</span>
+  </h1>
+
+  <img class="hero-cutout"
+       src="assets/hero-cutout.png"
+       alt="Yichen Xue, portrait" />
+
+  <div class="hero-inner">
+    <div></div>
+    <div class="hero-lower">
+      <div class="role">Baritone — New York</div>
+      <p class="tagline">
+        <!-- TAGLINE — short poetic line, final copy to be supplied -->
+        “A voice of bronze and lamplight —<br/>at home in tragedy, fluent in tenderness.”
+      </p>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== PERFORMANCE ===================== -->
+<section class="perf section-pad grain" id="performance">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">No. 02 — Performance</span>
+      <h2>Engagements.</h2>
+      <p class="kicker">Confirmed dates across the 2026 and 2027 seasons. Recent and historic seasons follow below.</p>
+    </div>
+
+    <div class="group reveal" id="upcoming">
+      <div class="row"><span class="date">2026</span><span class="prod">La Cenerentola</span><span class="role">Dandini</span><span class="house">Arizona Opera</span></div>
+      <div class="row"><span class="date">2026</span><span class="prod">Fellow Travellers</span><span class="role">Senator Potter / General Airlie</span><span class="house">Glimmerglass Festival</span></div>
+      <div class="row"><span class="date">2026</span><span class="prod">Madama Butterfly</span><span class="role">Imperial Commissioner</span><span class="house">Glimmerglass Festival</span></div>
+      <div class="row"><span class="date">2026</span><span class="prod">Madama Butterfly</span><span class="role">Sharpless (cover)</span><span class="house">Arizona Opera</span></div>
+      <div class="row"><span class="date">2027</span><span class="prod">Turandot</span><span class="role">Mandarin / Ping (cover)</span><span class="house">Virginia Opera</span></div>
+    </div>
+
+    <button class="expand" id="expand-recent" aria-expanded="false" aria-controls="recent concerts">
+      <span class="chev"></span><span>View Recent Seasons</span>
+    </button>
+
+    <div class="recent" id="recent">
+      <div class="group-label">Recent Seasons</div>
+      <div class="row"><span class="date">2025</span><span class="prod">Madama Butterfly</span><span class="role">Yamadori / Commissioner</span><span class="house">Opera Grand Rapids</span></div>
+      <div class="row"><span class="date">2025</span><span class="prod">Madama Butterfly</span><span class="role">Yamadori / Commissioner</span><span class="house">Arizona Opera</span></div>
+      <div class="row"><span class="date">2025</span><span class="prod">La Bohème</span><span class="role">Marcello</span><span class="house">Aspen Music Festival</span></div>
+      <div class="row"><span class="date">2025</span><span class="prod">La Bohème</span><span class="role">Schaunard</span><span class="house">Arizona Opera</span></div>
+      <div class="row"><span class="date">2024</span><span class="prod">La finta giardiniera</span><span class="role">Nardo</span><span class="house">Arizona Opera</span></div>
+      <div class="row"><span class="date">2024</span><span class="prod">Aida</span><span class="role">Amonasro (cover)</span><span class="house">Arizona Opera</span></div>
+      <div class="row"><span class="date">2022</span><span class="prod">La Bohème</span><span class="role">Schaunard (cover)</span><span class="house">Wolf Trap Opera</span></div>
+      <div class="row"><span class="date">2020</span><span class="prod">Silent Night</span><span class="role">Ponchel (cover)</span><span class="house">Wolf Trap Opera</span></div>
+    </div>
+
+    <div class="concerts" id="concerts">
+      <div class="group-label">Concerts &amp; Oratorio</div>
+      <div class="row"><span class="date">2025</span><span class="prod">Carmina Burana (Orff)</span><span class="role">Baritone Soloist</span><span class="house">Hunter College Choir</span></div>
+      <div class="row"><span class="date">2023</span><span class="prod">RiverRun Festival</span><span class="role">Bass Soloist</span><span class="house">The Kennedy Center</span></div>
+      <div class="row"><span class="date">2022</span><span class="prod">Angel Island Oratorio</span><span class="role">Bass Soloist</span><span class="house">Santa Fe Opera</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== REEL ===================== -->
+<section class="reel section-pad grain" id="repertoire">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">No. 03 — The Reel</span>
+      <h2>On Stage.</h2>
+      <p class="kicker">Excerpts from recent stage and concert engagements.</p>
+    </div>
+
+    <div class="reel-stage reveal" id="reel-stage">
+      <!-- REEL_VIDEO — replace src with your final reel file, or swap <video> for <iframe src="…"> -->
+      <div class="video">
+        <video controls preload="metadata" playsinline poster="assets/welch-wto2024.jpg">
+          <!-- REEL_VIDEO — uncomment + point src at your final file:
+          <source src="REEL_VIDEO.mp4" type="video/mp4" />
+          -->
+        </video>
+        <!--
+          If using an embed instead, swap the <video> tag above for:
+          <iframe src="REEL_VIDEO" title="Yichen Xue — Selected Performances Reel"
+                  allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
+        -->
+      </div>
+      <img class="frame" src="assets/frame.png" alt="" aria-hidden="true" />
+    </div>
+
+    <div class="reel-caption">Selected Performances — Reel</div>
+  </div>
+</section>
+
+<!-- ===================== BIOGRAPHY ===================== -->
+<section class="bio section-pad grain" id="biography">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">No. 04 — Biography</span>
+      <h2>Biography.</h2>
+    </div>
+
+    <div class="bio-grid">
+      <figure class="reveal" style="margin:0">
+        <!-- NOTE: spec asked for Best_headshot.jpeg (not supplied). Substituting Main_headshot.jpeg. -->
+        <div class="bio-portrait">
+          <img src="assets/main-headshot.jpeg" alt="Yichen Xue, formal portrait" />
+        </div>
+        <figcaption class="bio-caption">Portrait · New York</figcaption>
+      </figure>
+
+      <div class="bio-body reveal">
+        <p class="dropcap">
+          Yichen Xue is an American baritone whose voice — at once burnished and tender — has been heard on stages from Aspen to Glimmerglass, from Arizona Opera to The Kennedy Center. A 2025 Renée Fleming Fellow and former studio artist with Arizona Opera and Wolf Trap Opera, he sings a repertoire that ranges from Rossini’s Dandini to Puccini’s Marcello and Sharpless.
+        </p>
+
+        <p class="bio-pull">
+          “Sings with the kind of quiet authority that lets a phrase land twice — first in the ear, then in the chest.”
+        </p>
+
+        <p>
+          Recent engagements include Marcello in <em>La Bohème</em> at the Aspen Music Festival, Nardo in Mozart’s <em>La finta giardiniera</em> at Arizona Opera, and the Imperial Commissioner in <em>Madama Butterfly</em>. Upcoming seasons bring Dandini in <em>La Cenerentola</em>, Senator Potter / General Airlie in <em>Fellow Travellers</em> at the Glimmerglass Festival, and a cover of Ping in <em>Turandot</em> at Virginia Opera.
+        </p>
+
+        <p>
+          He holds a Bachelor of Music in Voice from the Manhattan School of Music and a Master of Arts in Vocal Performance from Hunter College–CUNY, where he studied with Ron Raines and Maitland Peters.
+        </p>
+
+        <dl class="bio-meta">
+          <div><dt>Voice</dt><dd>Baritone</dd></div>
+          <div><dt>Height</dt><dd>6'4"</dd></div>
+          <div><dt>Visa</dt><dd>O-1 Visa Holder</dd></div>
+          <div><dt>Based</dt><dd>New York City</dd></div>
+          <div><dt>Education</dt><dd>BM Voice, Manhattan School of Music</dd></div>
+          <div><dt>&nbsp;</dt><dd>MA Vocal Performance, Hunter College–CUNY</dd></div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="bio-inset reveal">
+      <figure style="margin:0">
+        <img src="assets/with-renee-fleming.jpg" alt="Yichen Xue with Renée Fleming at Aspen Music Festival" />
+        <figcaption class="bio-caption" style="margin-top:14px">With Renée Fleming · Aspen, 2025</figcaption>
+      </figure>
+      <div class="text">
+        <h3>Renée Fleming Fellow.</h3>
+        <p>Selected in 2025 for the Renée Fleming Fellowship at the Aspen Music Festival — a residency that paired stagework on <em>La Bohème</em> with private mentorship, recital, and master-class study.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== RECORDINGS ===================== -->
+<section class="records section-pad grain" id="recordings">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">No. 05 — Recordings</span>
+      <h2>On Record.</h2>
+      <p class="kicker">Music released with Etymology Records, available on Spotify.</p>
+    </div>
+
+    <div class="records-grid">
+      <div class="sleeve reveal" aria-hidden="true">
+        <div class="label">
+          Yichen Xue
+          <small>Etymology Records</small>
+        </div>
+      </div>
+      <div class="records-body reveal">
+        <p class="lede">A growing catalogue of art-song and aria recordings, released with Etymology Records. New releases are added each season; listen end-to-end on Spotify, or follow for first-listens.</p>
+        <!-- SPOTIFY_URL placeholder -->
+        <a class="listen" href="#SPOTIFY_URL" target="_blank" rel="noopener">
+          Listen on Spotify <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== GALLERY ===================== -->
+<section class="gallery section-pad grain" id="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">No. 06 — Gallery</span>
+      <h2>In Performance.</h2>
+    </div>
+
+    <div class="gallery-grid">
+      <a class="tile lg reveal" href="#">
+        <img src="assets/butterfly.jpeg" alt="Madama Butterfly" loading="lazy" />
+        <div class="cap"><span class="title">Madama Butterfly</span><span class="meta">Puccini · Opera Grand Rapids</span></div>
+      </a>
+      <a class="tile md reveal" href="#">
+        <img src="assets/secret-gardener.jpg" alt="La finta giardiniera" loading="lazy" />
+        <div class="cap"><span class="title">La finta giardiniera</span><span class="meta">Mozart · Arizona Opera</span></div>
+      </a>
+      <a class="tile sm reveal" href="#">
+        <img src="assets/silent-night.jpg" alt="Silent Night" loading="lazy" />
+        <div class="cap"><span class="title">Silent Night</span><span class="meta">Puts · Wolf Trap Opera</span></div>
+      </a>
+      <a class="tile wd reveal" href="#">
+        <img src="assets/welch-wto2024.jpg" alt="Portrait" loading="lazy" />
+        <div class="cap"><span class="title">Portrait</span><span class="meta">Studio · 2024</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== WORKED WITH ===================== -->
+<section class="worked section-pad grain">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">No. 07 — Collaborators</span>
+      <h2>Collaborators.</h2>
+    </div>
+
+    <div class="worked-grid">
+      <div class="group reveal">
+        <h4>Conductors</h4>
+        <ul>
+          <li>Brian Demaris</li>
+          <li>Enrique Mazzola</li>
+          <li>Steven Osgood</li>
+          <li>Patrick Summers</li>
+        </ul>
+      </div>
+      <div class="group reveal">
+        <h4>Directors</h4>
+        <ul>
+          <li>Katherine M. Carter</li>
+          <li>Mo Zhou</li>
+          <li>Sara Erde</li>
+          <li>Dona D. Vaughn</li>
+          <li>Alan Fischer</li>
+        </ul>
+      </div>
+      <div class="group reveal">
+        <h4>Coaches</h4>
+        <ul>
+          <li>Katherine Kozak</li>
+          <li>Grant Loehnig</li>
+          <li>Kirill Kuzmin</li>
+          <li>Thomas Muraco</li>
+        </ul>
+      </div>
+      <div class="group reveal">
+        <h4>Composers</h4>
+        <ul>
+          <li>Ruo Huang</li>
+          <li>Nell Shaw Cohen</li>
+        </ul>
+        <h4 style="margin-top:36px">Voice Teachers</h4>
+        <ul>
+          <li>Ron Raines</li>
+          <li>Maitland Peters</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== AWARDS / EDUCATION ===================== -->
+<section class="awards section-pad grain">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">No. 08 — Honors</span>
+      <h2>Honors.</h2>
+    </div>
+
+    <div class="two-col">
+      <div class="reveal">
+        <div class="col-head">Awards</div>
+        <ul class="list-rows">
+          <li><span class="yr">2025</span><span class="ttl">Met Opera Laffont — Encouragement Award</span><span class="where">New York</span></li>
+          <li><span class="yr">2025 · 26</span><span class="ttl">Martorella Voice Scholarship — National Finalist</span><span class="where">National</span></li>
+          <li><span class="yr">2024</span><span class="ttl">Gerda Lissner — Grant Winner</span><span class="where">New York</span></li>
+          <li><span class="yr">2024</span><span class="ttl">Career Bridges — Grant Winner</span><span class="where">New York</span></li>
+          <li><span class="yr">2023</span><span class="ttl">Opera Index — Emerging Artist Award</span><span class="where">New York</span></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <div class="col-head">Education &amp; Programs</div>
+        <ul class="list-rows">
+          <li><span class="yr">2026</span><span class="ttl">Resident Artist</span><span class="where">Glimmerglass Festival</span></li>
+          <li><span class="yr">2025</span><span class="ttl">Renée Fleming Fellow</span><span class="where">Aspen Music Festival</span></li>
+          <li><span class="yr">2024 · 26</span><span class="ttl">Studio Artist</span><span class="where">Arizona Opera</span></li>
+          <li><span class="yr">2024</span><span class="ttl">Studio Artist</span><span class="where">Wolf Trap Opera</span></li>
+          <li><span class="yr">2019 · 23</span><span class="ttl">MA Vocal Performance</span><span class="where">Hunter College–CUNY</span></li>
+          <li><span class="yr">2014 · 18</span><span class="ttl">BM Voice</span><span class="where">Manhattan School of Music</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== INQUIRY ===================== -->
+<section class="inquiry-sec section-pad grain" id="contact">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">No. 09 — Contact</span>
+      <h2>Inquiry.</h2>
+      <p class="lede">Bookings, casting, and press — direct.</p>
+
+      <div class="inquiry-actions">
+        <a class="btn solid" href="mailto:zgxueyichen@gmail.com">
+          Write to Yichen <span aria-hidden="true">→</span>
+        </a>
+        <!-- RESUME_URL — replace with the live Google Drive link -->
+        <a class="btn" href="#RESUME_URL" target="_blank" rel="noopener">
+          Download Résumé
+        </a>
+      </div>
+
+      <div class="inquiry-meta">
+        <div>
+          <span class="lbl">Email</span>
+          <a href="mailto:zgxueyichen@gmail.com">zgxueyichen@gmail.com</a>
+        </div>
+        <div>
+          <span class="lbl">Instagram</span>
+          <a href="https://www.instagram.com/yichen_baritone/" target="_blank" rel="noopener">@yichen_baritone</a>
+        </div>
+        <div>
+          <span class="lbl">Recordings</span>
+          <!-- SPOTIFY_URL placeholder -->
+          <a href="#SPOTIFY_URL" target="_blank" rel="noopener">Spotify</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer grain">
+  <div class="wrap">
+    <div class="footer-wordmark">YICHEN&nbsp;XUE</div>
+    <div class="footer-meta">
+      <div>© 2026 Yichen Xue</div>
+      <div style="display:flex; gap:28px;">
+        <a href="https://www.instagram.com/yichen_baritone/" target="_blank" rel="noopener">Instagram</a>
+        <a href="#SPOTIFY_URL" target="_blank" rel="noopener">Spotify</a>
+        <a href="mailto:zgxueyichen@gmail.com">Email</a>
+      </div>
+      <div>New York · United States</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- Nav: transparent over hero, solid after ---------- */
+(function () {
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    const y = window.scrollY || window.pageYOffset;
+    nav.classList.toggle('solid', y > window.innerHeight * 0.72);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+})();
+
+/* ---------- Reveal on scroll ---------- */
+(function () {
+  const els = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        io.unobserve(e.target);
+      }
+    }
+  }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+  els.forEach((el) => io.observe(el));
+})();
+
+/* ---------- Expand Recent Seasons + Concerts together ---------- */
+(function () {
+  const btn = document.getElementById('expand-recent');
+  const recent = document.getElementById('recent');
+  const concerts = document.getElementById('concerts');
+  const label = btn.querySelector('span:last-child');
+  btn.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    recent.classList.toggle('open', !open);
+    concerts.classList.toggle('open', !open);
+    label.textContent = open ? 'View Recent Seasons' : 'Hide Recent Seasons';
+  });
+})();
+</script>
+
+</body>
+</html>
