@@ -18,14 +18,13 @@
    RESUME_URL:
      The "Download Résumé" button href — currently "#RESUME_URL"
    SPOTIFY_URL:
-     Recordings + Contact links — currently "#SPOTIFY_URL"
+     Recordings + Contact links — currently "https://open.spotify.com/artist/3cbrG0MbM4PA1mGUjGlrlt"
   ================================================================
 -->
 
-<!-- Editorial fallback for the custom "Vogue" Didone until the real file is supplied -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,500;0,6..96,700;0,6..96,800;1,6..96,400&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Lora:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
 
 <style>
 /* ---------- CUSTOM FONTS (placeholders supplied by client) ---------- */
@@ -50,6 +49,13 @@
   font-style: italic;
   font-display: swap;
 }
+@font-face {
+  font-family: "Apple Garamond";
+  src: url("./fonts/AppleGaramond.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* ---------- TOKENS ---------- */
 :root {
@@ -64,8 +70,9 @@
   --hair:     rgba(253, 252, 248, 0.16);
   --gold:     #B7935A;
 
-  --display:  "Vogue", "Bodoni Moda", "Didot", "Bodoni 72", serif;
-  --body:     "Scholar", Georgia, "Times New Roman", serif;
+  --display:  "Cormorant Garamond", "Cormorant", Georgia, "Times New Roman", serif;
+  --body:     "Lora", Georgia, "Times New Roman", serif;
+  --button:   "Apple Garamond", "Cormorant Garamond", Georgia, serif;
 
   --gutter:   clamp(20px, 4vw, 64px);
   --maxw:     1320px;
@@ -82,8 +89,8 @@ body {
   background: var(--black);
   color: var(--cream);
   font-family: var(--body);
-  font-size: 15px;
-  line-height: 1.65;
+  font-size: 16px;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: hidden;
@@ -91,6 +98,12 @@ body {
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
+.visually-hidden {
+  position: absolute !important;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
 
 /* ---------- GRAIN — subtle film noise overlaid on dark grounds ---------- */
 .grain::after {
@@ -108,18 +121,17 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .display {
   font-family: var(--display);
   font-weight: 500;
-  letter-spacing: -0.015em;
-  line-height: 0.92;
+  letter-spacing: 0;
+  line-height: 1;
 }
 .eyebrow {
-  font-family: var(--body);
-  text-transform: uppercase;
-  letter-spacing: 0.36em;
-  font-size: 10px;
+  font-family: var(--button);
+  letter-spacing: 0.02em;
+  font-size: 16px;
   color: var(--muted);
 }
 .lede {
-  font-size: clamp(15px, 1.2vw, 18px);
+  font-size: clamp(16px, 1.3vw, 19px);
   line-height: 1.6;
   color: var(--cream);
 }
@@ -156,38 +168,39 @@ section { position: relative; }
 }
 .nav .mark {
   font-family: var(--display);
-  font-size: 15px;
-  letter-spacing: 0.28em;
+  font-size: 20px;
+  letter-spacing: 0.01em;
   font-weight: 500;
-  text-transform: uppercase;
 }
 .nav ul {
   list-style: none; margin: 0 auto; padding: 0;
   display: flex;
-  gap: clamp(14px, 1.9vw, 30px);
-  font-size: 10px;
-  letter-spacing: 0.32em;
-  text-transform: uppercase;
+  gap: clamp(14px, 1.9vw, 32px);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  font-style: italic;
+  font-family: var(--display);
 }
 .nav ul a { position: relative; padding: 6px 0; color: var(--cream); opacity: 0.82; transition: opacity 200ms ease; }
 .nav ul a::after {
   content: ""; position: absolute; left: 0; right: 0; bottom: 0;
-  height: 1px; background: var(--cream); transform: scaleX(0);
+  height: 1px; background: var(--gold); transform: scaleX(0);
   transform-origin: left center; transition: transform 360ms ease;
 }
+.nav ul a { transition: opacity 200ms ease; }
 .nav ul a:hover { opacity: 1; }
 .nav ul a:hover::after { transform: scaleX(1); }
 .nav .inquiry {
-  font-family: var(--body);
-  font-size: 10px;
-  letter-spacing: 0.36em;
-  text-transform: uppercase;
-  padding: 9px 18px;
+  font-family: var(--button);
+  font-style: normal;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  padding: 8px 18px;
   border: 1px solid var(--cream);
   color: var(--cream);
   transition: background 240ms ease, color 240ms ease;
 }
-.nav .inquiry:hover { background: var(--cream); color: var(--black); }
+.nav .inquiry:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
 .nav-toggle { display: none; }
 
 @media (max-width: 880px) {
@@ -205,13 +218,21 @@ section { position: relative; }
 }
 .hero-ground {
   position: absolute; inset: 0;
-  background:
-    radial-gradient(120% 80% at 50% 38%, #1A2752 0%, #0E1838 28%, #0A1128 55%, #050814 78%, #000000 100%);
+  background-image: url("assets/butterfly-title.jpg");
+  background-size: cover;
+  background-position: center;
 }
 .hero-vignette {
   position: absolute; inset: 0;
   background:
-    radial-gradient(60% 45% at 50% 42%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.35) 80%, rgba(0,0,0,0.55) 100%);
+    linear-gradient(180deg,
+      rgba(0,0,0,0.55) 0%,
+      rgba(0,0,0,0.22) 22%,
+      rgba(0,0,0,0.12) 42%,
+      rgba(0,0,0,0.38) 65%,
+      rgba(0,0,0,0.78) 82%,
+      rgba(0,0,0,0.96) 94%,
+      #000 100%);
   pointer-events: none;
 }
 .hero-inner {
@@ -225,27 +246,32 @@ section { position: relative; }
 .masthead {
   position: absolute;
   left: 0; right: 0;
-  top: clamp(150px, 19vw, 250px);
+  top: 50%;
+  transform: translateY(-50%);
   text-align: center;
   font-family: var(--display);
   font-weight: 500;
-  font-size: clamp(44px, 8.4vw, 124px);
-  letter-spacing: 0.01em;
-  line-height: 0.92;
+  font-size: clamp(56px, 11vw, 168px);
+  letter-spacing: 0.005em;
+  line-height: 1;
   color: var(--cream);
   white-space: nowrap;
   user-select: none;
-  z-index: 1;
-  text-shadow: 0 2px 40px rgba(0,0,0,0.35);
+  z-index: 3;
+  text-shadow:
+    0 2px 30px rgba(0,0,0,0.65),
+    0 1px 4px rgba(0,0,0,0.55);
 }
 .masthead .ampline {
   display: block;
-  font-size: 11px;
-  letter-spacing: 0.46em;
-  font-family: var(--body);
-  color: var(--muted);
+  font-size: 14px;
+  letter-spacing: 0.42em;
+  font-family: var(--button);
+  font-weight: 400;
+  color: rgba(253, 252, 248, 0.86);
   text-transform: uppercase;
   margin-top: 22px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
 }
 .hero-cutout {
   position: absolute;
@@ -268,7 +294,6 @@ section { position: relative; }
 }
 .hero-lower {
   position: relative;
-  /* Sub-text drawn IN FRONT of the cutout */
   z-index: 3;
   display: flex;
   align-items: flex-end;
@@ -276,12 +301,12 @@ section { position: relative; }
   gap: 32px;
   grid-row: 2;
   align-self: end;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
 }
 .hero-lower .role {
-  font-family: var(--body);
-  font-size: 10px;
-  letter-spacing: 0.46em;
-  text-transform: uppercase;
+  font-family: var(--button);
+  font-size: 14px;
+  letter-spacing: 0.04em;
   color: var(--cream);
   display: flex; align-items: center; gap: 16px;
 }
@@ -292,34 +317,36 @@ section { position: relative; }
   font-family: var(--display);
   font-style: italic;
   font-weight: 400;
-  font-size: clamp(13px, 1.2vw, 17px);
-  letter-spacing: 0.01em;
+  font-size: clamp(15px, 1.4vw, 20px);
+  letter-spacing: 0.005em;
   line-height: 1.4;
   max-width: 34ch;
   text-align: right;
   color: var(--cream);
-  opacity: 0.88;
+  opacity: 0.94;
 }
 .hero-meta {
   position: absolute;
   z-index: 3;
   top: clamp(92px, 11vw, 130px);
   left: var(--gutter);
-  font-size: 9px;
-  letter-spacing: 0.46em;
-  text-transform: uppercase;
-  color: var(--muted);
+  font-family: var(--button);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: rgba(253, 252, 248, 0.78);
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
 }
 .hero-meta-right {
   position: absolute;
   z-index: 3;
   top: clamp(92px, 11vw, 130px);
   right: var(--gutter);
-  font-size: 9px;
-  letter-spacing: 0.46em;
-  text-transform: uppercase;
-  color: var(--muted);
+  font-family: var(--button);
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  color: rgba(253, 252, 248, 0.78);
   text-align: right;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.6);
 }
 
 @media (max-width: 720px) {
@@ -339,41 +366,39 @@ section { position: relative; }
   align-items: end;
 }
 .section-head .num {
-  font-family: var(--body);
-  font-size: 10px;
-  letter-spacing: 0.46em;
-  text-transform: uppercase;
+  font-family: var(--button);
+  font-size: 16px;
+  letter-spacing: 0.02em;
   color: var(--muted);
 }
 .section-head h2 {
   margin: 0;
   font-family: var(--display);
   font-weight: 500;
-  font-size: clamp(42px, 6.4vw, 96px);
-  letter-spacing: -0.015em;
-  line-height: 0.95;
+  font-size: clamp(42px, 6.4vw, 88px);
+  letter-spacing: 0;
+  line-height: 1;
 }
 .section-head .kicker {
   font-family: var(--body);
-  font-size: 12px;
+  font-size: 16px;
   line-height: 1.65;
   color: var(--muted);
-  letter-spacing: 0.02em;
-  max-width: 48ch;
+  letter-spacing: 0;
+  max-width: 52ch;
 }
 
 /* ---------- PERFORMANCE TABLE ---------- */
 .perf {
   background:
-    linear-gradient(to bottom, #0A1128 0%, #060B1C 45%, #03060F 75%, #000 100%);
+    linear-gradient(to bottom, #000 0%, #050913 12%, #0A1128 35%, #060B1C 65%, #03060F 85%, #000 100%);
 }
 .perf .group { position: relative; }
 .perf .group-label {
   display: flex; align-items: center; gap: 18px;
-  font-family: var(--body);
-  font-size: 10px;
-  letter-spacing: 0.46em;
-  text-transform: uppercase;
+  font-family: var(--button);
+  font-size: 16px;
+  letter-spacing: 0.02em;
   color: var(--muted);
   margin: 56px 0 18px;
 }
@@ -382,55 +407,70 @@ section { position: relative; }
 }
 .row {
   display: grid;
-  grid-template-columns: 90px minmax(0, 1.6fr) minmax(0, 1.1fr) minmax(0, 1.2fr);
+  grid-template-columns: 90px minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1.1fr) auto;
   gap: 24px;
   padding: 22px 0;
   border-bottom: 1px solid var(--hair);
   align-items: baseline;
 }
+.row .tickets a {
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: var(--button);
+  font-style: normal;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  padding: 9px 18px;
+  border: 1px solid var(--hair);
+  color: var(--cream);
+  border-radius: 999px;
+  transition: background 240ms ease, border-color 240ms ease, color 240ms ease;
+}
+.row .tickets a:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
+.row .tickets a span { transition: transform 320ms cubic-bezier(.2,.7,.2,1); }
+.row .tickets a:hover span { transform: translateX(3px); }
 .row:first-of-type { border-top: 1px solid var(--hair); }
 .row .date {
-  font-family: var(--body);
-  letter-spacing: 0.2em;
-  font-size: 11px;
+  font-family: var(--button);
+  letter-spacing: 0.02em;
+  font-size: 15px;
   color: var(--muted);
 }
 .row .prod {
   font-family: var(--display);
-  font-size: clamp(20px, 2vw, 28px);
-  letter-spacing: -0.005em;
+  font-size: clamp(22px, 2.2vw, 30px);
+  letter-spacing: 0;
   line-height: 1.1;
 }
 .row .role {
   font-family: var(--body);
   font-style: italic;
-  font-size: 13px;
+  font-size: 15px;
   color: var(--cream);
-  opacity: 0.86;
+  opacity: 0.9;
 }
 .row .house {
-  font-family: var(--body);
-  font-size: 11px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+  font-family: var(--button);
+  font-size: 14px;
+  letter-spacing: 0.02em;
   color: var(--muted);
 }
 @media (max-width: 760px) {
   .row {
     grid-template-columns: 1fr;
-    gap: 6px;
+    gap: 8px;
     padding: 20px 0;
   }
   .row .prod { font-size: 22px; }
+  .row .tickets { margin-top: 6px; }
 }
 
 .expand {
   margin: 44px 0 0;
   display: inline-flex; align-items: center; gap: 16px;
-  font-family: var(--body);
-  font-size: 10px;
-  letter-spacing: 0.46em;
-  text-transform: uppercase;
+  font-family: var(--button);
+  font-style: normal;
+  font-size: 15px;
+  letter-spacing: 0.02em;
   color: var(--cream);
   padding: 12px 0;
 }
@@ -444,70 +484,65 @@ section { position: relative; }
 .recent, .concerts { display: none; }
 .recent.open, .concerts.open { display: block; }
 
-/* ---------- REEL ---------- */
+/* ---------- REEL — sticky parallax media ---------- */
 .reel {
-  background:
-    radial-gradient(80% 60% at 50% 40%, #16235A 0%, #0A1128 40%, #050B1C 70%, #000 100%);
-}
-.reel-stage {
   position: relative;
-  width: min(900px, 100%);
-  margin: 0 auto;
-  aspect-ratio: 16 / 11.2; /* matches the outer of frame.png */
-  /* Warm golden ambient glow behind the frame */
-  filter: drop-shadow(0 30px 70px rgba(0,0,0,0.7));
-}
-.reel-stage::before {
-  content: "";
-  position: absolute;
-  inset: -8% -6%;
-  background: radial-gradient(60% 50% at 50% 50%, rgba(183, 147, 90, 0.28) 0%, rgba(183, 147, 90, 0.08) 50%, rgba(183, 147, 90, 0) 80%);
-  filter: blur(20px);
-  z-index: 0;
-  pointer-events: none;
-}
-.reel-stage .video {
-  position: absolute;
-  /* Inset video so its edges tuck just under the inner lip of the frame.
-     Tune these CSS variables — :root --frame-inset-x / --frame-inset-y. */
-  top:    var(--frame-inset-y);
-  bottom: var(--frame-inset-y);
-  left:   var(--frame-inset-x);
-  right:  var(--frame-inset-x);
+  min-height: 220vh;
   background: #000;
-  z-index: 1;
-  overflow: hidden;
 }
-.reel-stage .video video,
-.reel-stage .video iframe {
+.reel-pin {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  isolation: isolate;
+}
+.reel-bg {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
   object-fit: cover;
-  border: 0;
-  display: block;
-  background: #000;
+  object-position: center;
+  z-index: 1;
+  filter: brightness(0.85) contrast(1.04) saturate(0.92);
 }
-.reel-stage .frame {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  pointer-events: none;
+.reel-grad {
+  position: absolute;
+  left: 0; right: 0;
   z-index: 2;
-  object-fit: contain;
+  pointer-events: none;
 }
-.reel-caption {
-  margin-top: 32px;
+.reel-grad-top {
+  top: 0;
+  height: 35vh;
+  background: linear-gradient(to bottom, #000 0%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0) 100%);
+}
+.reel-grad-bot {
+  bottom: 0;
+  height: 35vh;
+  background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0) 100%);
+}
+.reel-head {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
-  font-family: var(--body);
-  font-size: 10px;
-  letter-spacing: 0.46em;
-  text-transform: uppercase;
-  color: var(--muted);
+  padding: 0 var(--gutter);
 }
+.reel-head .section-head { margin-bottom: 0; }
+.reel-head .num,
+.reel-head .kicker {
+  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
+}
+.reel-head .kicker { margin: 14px auto 0; }
 
 /* ---------- BIOGRAPHY ---------- */
 .bio {
   background:
-    linear-gradient(180deg, #0A1128 0%, #060B1C 55%, #02050E 85%, #000 100%);
+    linear-gradient(180deg, #000 0%, #050913 10%, #0A1128 35%, #060B1C 65%, #02050E 88%, #000 100%);
 }
 .bio-grid {
   display: grid;
@@ -517,30 +552,22 @@ section { position: relative; }
 }
 .bio-portrait {
   position: relative;
-  aspect-ratio: 4 / 5;
-  overflow: hidden;
   background: #0B0F0C;
 }
 .bio-portrait img {
-  width: 100%; height: 100%; object-fit: cover; object-position: center;
+  width: 100%; height: auto; display: block;
   filter: contrast(1.02) saturate(0.95);
-}
-.bio-portrait::after {
-  content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to bottom, rgba(0,0,0,0) 60%, rgba(0,0,0,0.4) 100%);
-  pointer-events: none;
 }
 .bio-caption {
   margin-top: 14px;
-  font-family: var(--body);
-  font-size: 10px;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
+  font-family: var(--button);
+  font-size: 14px;
+  letter-spacing: 0.02em;
   color: var(--muted);
 }
 .bio-body {
   font-family: var(--body);
-  font-size: clamp(14px, 1vw, 15px);
+  font-size: clamp(15px, 1.1vw, 17px);
   line-height: 1.8;
   color: var(--cream);
   text-wrap: pretty;
@@ -573,14 +600,13 @@ section { position: relative; }
   margin-top: 32px;
 }
 .bio-meta dt {
-  font-family: var(--body);
-  font-size: 9px;
-  letter-spacing: 0.42em;
-  text-transform: uppercase;
+  font-family: var(--button);
+  font-size: 13px;
+  letter-spacing: 0.02em;
   color: var(--muted);
   margin-bottom: 4px;
 }
-.bio-meta dd { margin: 0; font-family: var(--body); font-size: 13px; }
+.bio-meta dd { margin: 0; font-family: var(--body); font-size: 16px; }
 
 .bio-inset {
   display: grid;
@@ -611,13 +637,22 @@ section { position: relative; }
 
 /* ---------- RECORDINGS ---------- */
 .records {
-  background: linear-gradient(180deg, #050A1A 0%, #0A1128 45%, #050913 80%, #000 100%);
+  background: linear-gradient(180deg, #000 0%, #050A1A 12%, #0A1128 45%, #050913 80%, #000 100%);
 }
 .records-grid {
   display: grid;
   grid-template-columns: 5fr 7fr;
   gap: clamp(28px, 4vw, 72px);
   align-items: center;
+}
+.spotify-embed {
+  position: relative;
+}
+.spotify-embed iframe {
+  display: block;
+  width: 100%;
+  border: 0;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.55);
 }
 .records .sleeve {
   aspect-ratio: 1 / 1;
@@ -657,17 +692,18 @@ section { position: relative; }
   display: inline-flex; align-items: center; gap: 14px;
   padding: 12px 22px;
   border: 1px solid var(--cream);
-  font-size: 10px;
-  letter-spacing: 0.46em;
-  text-transform: uppercase;
+  font-family: var(--button);
+  font-style: normal;
+  font-size: 15px;
+  letter-spacing: 0.02em;
   transition: background 240ms ease, color 240ms ease;
 }
-.records-body .listen:hover { background: var(--cream); color: var(--black); }
+.records-body .listen:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
 @media (max-width: 820px) { .records-grid { grid-template-columns: 1fr; } }
 
 /* ---------- GALLERY ---------- */
 .gallery {
-  background: linear-gradient(180deg, #000 0%, #050917 50%, #0A1128 100%);
+  background: linear-gradient(180deg, #000 0%, #050917 35%, #0A1128 55%, #050917 80%, #000 100%);
 }
 .gallery-grid {
   display: grid;
@@ -679,40 +715,165 @@ section { position: relative; }
   overflow: hidden;
   background: #0A0E0B;
   cursor: pointer;
+  display: block;
+  padding: 0;
+  border: 0;
+  text-align: left;
+  color: inherit;
+  font: inherit;
 }
 .tile img {
   width: 100%; height: 100%; object-fit: cover;
-  transition: transform 900ms cubic-bezier(.2,.7,.2,1), filter 600ms ease;
-  filter: brightness(0.92) contrast(1.04) saturate(0.92);
+  transition: transform 1100ms cubic-bezier(.2,.7,.2,1), filter 600ms ease;
+  filter: brightness(0.9) contrast(1.04) saturate(0.92);
 }
-.tile:hover img { transform: scale(1.035); filter: brightness(1) contrast(1.05) saturate(0.96); }
+.tile:hover img { transform: scale(1.07); filter: brightness(1.02) contrast(1.06) saturate(0.98); }
 .tile .cap {
   position: absolute; left: 18px; right: 18px; bottom: 16px;
   display: flex; align-items: baseline; justify-content: space-between; gap: 16px;
   z-index: 2;
 }
 .tile .cap .title {
-  font-family: var(--display); font-size: clamp(14px, 1.2vw, 18px); letter-spacing: -0.005em;
+  font-family: var(--display); font-size: clamp(18px, 1.6vw, 24px); letter-spacing: 0; color: var(--cream);
 }
 .tile .cap .meta {
-  font-family: var(--body); font-size: 9px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted);
+  font-family: var(--button); font-size: 13px; letter-spacing: 0.02em; color: rgba(253, 252, 248, 0.82);
 }
 .tile::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.62) 0%, rgba(0,0,0,0) 45%);
+  background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.35) 22%, rgba(0,0,0,0) 50%);
   pointer-events: none; z-index: 1;
 }
-.tile.lg { grid-column: span 7; aspect-ratio: 4 / 5; }
-.tile.md { grid-column: span 5; aspect-ratio: 4 / 5; }
+.tile.lg { grid-column: span 7; aspect-ratio: 3 / 2; }
+.tile.md { grid-column: span 5; aspect-ratio: 3 / 2; }
 .tile.wd { grid-column: span 7; aspect-ratio: 3 / 2; }
 .tile.sm { grid-column: span 5; aspect-ratio: 3 / 2; }
+.tile.full { grid-column: span 12; aspect-ratio: 21 / 9; }
+.tile.portrait { grid-column: 5 / span 4; aspect-ratio: 2 / 3; }
 @media (max-width: 760px) {
-  .tile.lg, .tile.md, .tile.wd, .tile.sm { grid-column: span 12; aspect-ratio: 4 / 5; }
+  .tile.lg, .tile.md, .tile.wd, .tile.sm, .tile.full { grid-column: span 12; aspect-ratio: 3 / 2; }
+  .tile.portrait { grid-column: 1 / -1; aspect-ratio: 2 / 3; }
+}
+
+/* ---------- LIGHTBOX ---------- */
+.lightbox {
+  position: fixed; inset: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(24px, 5vw, 64px);
+  background: rgba(0, 0, 0, 0.92);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 320ms ease;
+}
+.lightbox.open { display: flex; opacity: 1; }
+.lightbox-stage {
+  position: relative;
+  width: min(1100px, 100%);
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+.lightbox-media {
+  position: relative;
+  width: 100%;
+  max-height: 80vh;
+  overflow: hidden;
+  background: #0A0E0B;
+}
+.lightbox-media img {
+  width: 100%;
+  height: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  display: block;
+}
+.lightbox-media::after {
+  content: "";
+  position: absolute; left: 0; right: 0; bottom: 0;
+  height: 55%;
+  background: linear-gradient(to top, rgba(0,0,0,0.92) 0%, rgba(0,0,0,0.55) 45%, rgba(0,0,0,0) 100%);
+  pointer-events: none;
+}
+.lightbox-caption {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  padding: clamp(20px, 3vw, 36px);
+  display: grid;
+  gap: 8px;
+  z-index: 2;
+}
+.lightbox-caption .lb-title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(24px, 2.4vw, 36px);
+  line-height: 1.1;
+  color: var(--cream);
+}
+.lightbox-caption .lb-meta {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(15px, 1.2vw, 18px);
+  color: rgba(253, 252, 248, 0.78);
+}
+.lightbox-caption .lb-detail {
+  font-family: var(--body);
+  font-size: clamp(14px, 1.1vw, 16px);
+  color: rgba(253, 252, 248, 0.72);
+  max-width: 68ch;
+  margin-top: 4px;
+}
+.lightbox-close {
+  position: absolute;
+  top: 18px; right: 22px;
+  width: 44px; height: 44px;
+  border: 1px solid var(--hair);
+  background: rgba(0,0,0,0.4);
+  color: var(--cream);
+  font-family: var(--display);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  border-radius: 50%;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background 200ms ease, border-color 200ms ease;
+  z-index: 4;
+}
+.lightbox-close:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: var(--cream);
+}
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px; height: 48px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--hair);
+  background: rgba(0,0,0,0.35);
+  color: var(--cream);
+  font-family: var(--display);
+  font-style: italic;
+  font-size: 22px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: background 200ms ease, border-color 200ms ease;
+  z-index: 4;
+}
+.lightbox-nav:hover { background: rgba(255,255,255,0.08); border-color: var(--cream); }
+.lightbox-prev { left: clamp(8px, 2vw, 24px); }
+.lightbox-next { right: clamp(8px, 2vw, 24px); }
+@media (max-width: 720px) {
+  .lightbox-prev, .lightbox-next { display: none; }
 }
 
 /* ---------- WORKED WITH ---------- */
 .worked {
-  background: linear-gradient(180deg, #0A1128 0%, #060B1C 50%, #000 100%);
+  background: linear-gradient(180deg, #000 0%, #050913 12%, #0A1128 40%, #060B1C 75%, #000 100%);
 }
 .worked-grid {
   display: grid;
@@ -721,10 +882,10 @@ section { position: relative; }
 }
 .worked .group h4 {
   margin: 0 0 16px;
-  font-family: var(--body);
-  font-size: 10px;
-  letter-spacing: 0.46em;
-  text-transform: uppercase;
+  font-family: var(--button);
+  font-weight: 400;
+  font-size: 16px;
+  letter-spacing: 0.02em;
   color: var(--muted);
   padding-bottom: 12px;
   border-bottom: 1px solid var(--hair);
@@ -742,27 +903,60 @@ section { position: relative; }
 @media (max-width: 720px) { .worked-grid { grid-template-columns: 1fr; gap: 36px; } }
 
 /* ---------- AWARDS / EDUCATION ---------- */
-.awards { background: linear-gradient(180deg, #000 0%, #060B1C 45%, #0A1128 100%); }
+.awards { background: linear-gradient(180deg, #000 0%, #060B1C 30%, #0A1128 55%, #060B1C 80%, #000 100%); }
 .two-col {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: clamp(48px, 6vw, 96px);
 }
+.list-rows {
+  list-style: none; padding: 0; margin: 0;
+  position: relative;
+}
 .list-rows li {
   display: grid;
   grid-template-columns: 100px 1fr auto;
   gap: 18px;
-  padding: 18px 0;
+  padding: 22px 8px;
   border-bottom: 1px solid var(--hair);
   align-items: baseline;
+  position: relative;
+  cursor: default;
+  transition: padding 320ms cubic-bezier(.2,.7,.2,1), background 320ms ease;
 }
-.list-rows { list-style: none; padding: 0; margin: 0; }
 .list-rows li:first-child { border-top: 1px solid var(--hair); }
-.list-rows .yr { font-family: var(--body); font-size: 11px; letter-spacing: 0.2em; color: var(--muted); }
-.list-rows .ttl { font-family: var(--display); font-size: clamp(16px, 1.4vw, 20px); line-height: 1.2; }
-.list-rows .where { font-family: var(--body); font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-align: right; }
+.list-rows li::before {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -1px;
+  height: 1px;
+  width: 0;
+  background: var(--cream);
+  transition: width 480ms cubic-bezier(.2,.7,.2,1);
+  z-index: 2;
+}
+.list-rows li:hover::before { width: 100%; }
+.list-rows li:hover {
+  background: linear-gradient(to right, rgba(253,252,248,0.05), rgba(253,252,248,0));
+}
+.list-rows .yr,
+.list-rows .ttl,
+.list-rows .where {
+  transition: transform 360ms cubic-bezier(.2,.7,.2,1), color 360ms ease, opacity 360ms ease;
+}
+.list-rows li:hover .yr,
+.list-rows li:hover .ttl,
+.list-rows li:hover .where {
+  transform: translateY(-3px);
+}
+.list-rows li:hover .ttl { color: var(--cream); }
+.list-rows li:hover .yr,
+.list-rows li:hover .where { color: rgba(253, 252, 248, 0.92); }
+.list-rows .yr { font-family: var(--button); font-size: 15px; letter-spacing: 0.02em; color: var(--muted); }
+.list-rows .ttl { font-family: var(--display); font-size: clamp(18px, 1.6vw, 22px); line-height: 1.2; color: rgba(253, 252, 248, 0.92); }
+.list-rows .where { font-family: var(--button); font-size: 14px; letter-spacing: 0.02em; color: var(--muted); text-align: right; }
 .col-head {
-  font-family: var(--body); font-size: 10px; letter-spacing: 0.46em; text-transform: uppercase;
+  font-family: var(--button); font-size: 16px; letter-spacing: 0.02em;
   color: var(--muted); margin-bottom: 22px;
 }
 @media (max-width: 820px) {
@@ -771,10 +965,116 @@ section { position: relative; }
   .list-rows .where { text-align: left; }
 }
 
+/* ---------- TIMELINE (honors) ---------- */
+.timeline {
+  position: relative;
+  list-style: none;
+  margin: 0;
+  padding: 24px 0;
+}
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 0; bottom: 0;
+  width: 1px;
+  background: linear-gradient(to bottom,
+    rgba(183, 147, 90, 0) 0%,
+    rgba(183, 147, 90, 0.5) 8%,
+    rgba(183, 147, 90, 0.5) 92%,
+    rgba(183, 147, 90, 0) 100%);
+  transform: translateX(-0.5px);
+  pointer-events: none;
+}
+.tl-entry {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 56px 1fr;
+  align-items: center;
+  padding: 32px 0;
+}
+.tl-entry::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 12px; height: 12px;
+  transform: translate(-50%, -50%) rotate(45deg);
+  border: 1px solid var(--gold);
+  background: var(--black);
+  z-index: 1;
+  transition: transform 360ms cubic-bezier(.2,.7,.2,1), background 360ms ease, border-color 360ms ease;
+}
+.tl-entry:hover::before {
+  background: var(--gold);
+  transform: translate(-50%, -50%) rotate(45deg) scale(1.18);
+}
+.tl-side {
+  padding: 0 clamp(20px, 3vw, 44px);
+  cursor: default;
+}
+.tl-entry:nth-child(odd) .tl-side {
+  grid-column: 1;
+  text-align: right;
+}
+.tl-entry:nth-child(even) .tl-side {
+  grid-column: 3;
+  text-align: left;
+}
+.tl-year {
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(22px, 2vw, 28px);
+  line-height: 1;
+  color: var(--gold);
+  margin-bottom: 10px;
+  transition: transform 360ms cubic-bezier(.2,.7,.2,1), color 360ms ease;
+}
+.tl-sub {
+  font-family: var(--button);
+  font-size: 12px;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+  transition: color 360ms ease;
+}
+.tl-title {
+  font-family: var(--display);
+  font-weight: 500;
+  font-size: clamp(20px, 1.9vw, 26px);
+  line-height: 1.25;
+  color: rgba(253, 252, 248, 0.88);
+  transition: transform 360ms cubic-bezier(.2,.7,.2,1), color 360ms ease;
+}
+.tl-entry:hover .tl-title {
+  color: var(--cream);
+  transform: translateY(-3px);
+}
+.tl-entry:hover .tl-year {
+  color: #D2AE74;
+}
+.tl-entry:hover .tl-sub { color: rgba(253, 252, 248, 0.78); }
+
+@media (max-width: 760px) {
+  .timeline::before { left: 18px; }
+  .tl-entry {
+    grid-template-columns: 36px 1fr;
+    padding: 24px 0;
+  }
+  .tl-entry::before { left: 18px; }
+  .tl-entry:nth-child(odd) .tl-side,
+  .tl-entry:nth-child(even) .tl-side {
+    grid-column: 2;
+    text-align: left;
+    padding-left: 18px;
+    padding-right: 0;
+  }
+}
+
 /* ---------- INQUIRY ---------- */
 .inquiry-sec {
-  background:
-    radial-gradient(80% 60% at 50% 30%, #1F2D6A 0%, #0A1128 40%, #050913 72%, #000 100%);
+  background: #000;
   text-align: center;
 }
 .inquiry-sec h2 {
@@ -784,6 +1084,7 @@ section { position: relative; }
   line-height: 0.92;
   letter-spacing: -0.02em;
   margin: 14px 0 0;
+  color: var(--gold);
 }
 .inquiry-sec .lede { max-width: 50ch; margin: 24px auto 0; color: var(--cream); opacity: 0.82; }
 .inquiry-actions {
@@ -792,18 +1093,18 @@ section { position: relative; }
 }
 .btn {
   display: inline-flex; align-items: center; gap: 14px;
-  font-family: var(--body);
-  font-size: 10px;
-  letter-spacing: 0.46em;
-  text-transform: uppercase;
-  padding: 15px 26px;
+  font-family: var(--button);
+  font-style: normal;
+  font-size: 15px;
+  letter-spacing: 0.02em;
+  padding: 14px 28px;
   border: 1px solid var(--cream);
   color: var(--cream);
   transition: background 240ms ease, color 240ms ease;
 }
-.btn.solid { background: var(--cream); color: var(--black); }
-.btn:hover { background: var(--cream); color: var(--black); }
-.btn.solid:hover { background: transparent; color: var(--cream); }
+.btn.solid { background: var(--cream); color: var(--black); border-color: var(--cream); }
+.btn:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
+.btn.solid:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
 .inquiry-meta {
   margin-top: 48px;
   display: grid;
@@ -814,34 +1115,38 @@ section { position: relative; }
   border-bottom: 1px solid var(--hair);
   padding: 24px 0;
 }
-.inquiry-meta div { font-family: var(--body); font-size: 11px; letter-spacing: 0.18em; }
-.inquiry-meta div .lbl { display: block; font-size: 9px; letter-spacing: 0.46em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.inquiry-meta div { font-family: var(--button); font-size: 14px; letter-spacing: 0.02em; }
+.inquiry-meta div .lbl { display: block; font-family: var(--button); font-size: 13px; letter-spacing: 0.02em; color: var(--muted); margin-bottom: 6px; }
 @media (max-width: 720px) {
   .inquiry-meta { grid-template-columns: 1fr; }
 }
 
 /* ---------- FOOTER ---------- */
 .footer {
-  background: linear-gradient(180deg, #0A1128 0%, #050913 50%, #000 100%);
+  background: linear-gradient(180deg, #000 0%, #050913 25%, #0A1128 55%, #050913 85%, #000 100%);
   padding: clamp(80px, 9vw, 120px) 0 48px;
   position: relative;
 }
 .footer-wordmark {
   font-family: var(--display);
   font-weight: 500;
-  font-size: clamp(40px, 8.6vw, 140px);
-  letter-spacing: 0.04em;
-  line-height: 0.95;
+  font-style: italic;
+  font-size: clamp(48px, 9vw, 140px);
+  letter-spacing: 0;
+  line-height: 1;
   text-align: center;
   margin: 0 0 56px;
 }
 .footer-meta {
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px;
-  font-family: var(--body); font-size: 10px; letter-spacing: 0.4em; text-transform: uppercase; color: var(--muted);
+  font-family: var(--button); font-size: 14px; letter-spacing: 0.02em; color: var(--muted);
   border-top: 1px solid var(--hair);
   padding-top: 22px;
 }
+.footer-meta a { transition: color 200ms ease; }
 .footer-meta a:hover { color: var(--cream); }
+.inquiry-meta a { transition: color 200ms ease; }
+.inquiry-meta a:hover { color: var(--cream); }
 
 /* ---------- REVEAL ON SCROLL ---------- */
 .reveal {
@@ -864,8 +1169,8 @@ section { position: relative; }
 <nav class="nav" id="nav" aria-label="Primary">
   <a class="mark" href="#top">Yichen&nbsp;Xue</a>
   <ul>
-    <li><a href="#performance">Performance</a></li>
-    <li><a href="#repertoire">Repertoire</a></li>
+    <li><a href="#performance">Engagements</a></li>
+    <li><a href="#repertoire">Reel</a></li>
     <li><a href="#biography">Biography</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#recordings">Recordings</a></li>
@@ -883,22 +1188,14 @@ section { position: relative; }
   <div class="hero-meta-right">A press portfolio</div>
 
   <h1 class="masthead" aria-label="Yichen Xue">
-    YICHEN&nbsp;XUE
-    <span class="ampline">Baritone · The American Voice Issue</span>
+    Yichen&nbsp;Xue
+    <span class="ampline">Baritone</span>
   </h1>
-
-  <img class="hero-cutout"
-       src="assets/hero-cutout.png"
-       alt="Yichen Xue, portrait" />
 
   <div class="hero-inner">
     <div></div>
     <div class="hero-lower">
       <div class="role">Baritone — New York</div>
-      <p class="tagline">
-        <!-- TAGLINE — short poetic line, final copy to be supplied -->
-        “A voice of bronze and lamplight —<br/>at home in tragedy, fluent in tenderness.”
-      </p>
     </div>
   </div>
 </header>
@@ -913,11 +1210,41 @@ section { position: relative; }
     </div>
 
     <div class="group reveal" id="upcoming">
-      <div class="row"><span class="date">2026</span><span class="prod">La Cenerentola</span><span class="role">Dandini</span><span class="house">Arizona Opera</span></div>
-      <div class="row"><span class="date">2026</span><span class="prod">Fellow Travellers</span><span class="role">Senator Potter / General Airlie</span><span class="house">Glimmerglass Festival</span></div>
-      <div class="row"><span class="date">2026</span><span class="prod">Madama Butterfly</span><span class="role">Imperial Commissioner</span><span class="house">Glimmerglass Festival</span></div>
-      <div class="row"><span class="date">2026</span><span class="prod">Madama Butterfly</span><span class="role">Sharpless (cover)</span><span class="house">Arizona Opera</span></div>
-      <div class="row"><span class="date">2027</span><span class="prod">Turandot</span><span class="role">Mandarin / Ping (cover)</span><span class="house">Virginia Opera</span></div>
+      <div class="row">
+        <span class="date">Apr 2026</span>
+        <span class="prod">La Cenerentola</span>
+        <span class="role">Dandini</span>
+        <span class="house">Arizona Opera</span>
+        <span class="tickets"><a href="https://azopera.org/performances/la-cenerentola" target="_blank" rel="noopener">Tickets <span aria-hidden="true">→</span></a></span>
+      </div>
+      <div class="row">
+        <span class="date">Jul 2026</span>
+        <span class="prod">Fellow Travelers</span>
+        <span class="role">Senator Potter / General Airlie</span>
+        <span class="house">Glimmerglass Festival</span>
+        <span class="tickets"><a href="https://glimmerglass.org/events/fellow-travelers/" target="_blank" rel="noopener">Tickets <span aria-hidden="true">→</span></a></span>
+      </div>
+      <div class="row">
+        <span class="date">Jul 2026</span>
+        <span class="prod">Madama Butterfly</span>
+        <span class="role">Imperial Commissioner</span>
+        <span class="house">Glimmerglass Festival</span>
+        <span class="tickets"><a href="https://glimmerglass.org/events/butterfly/" target="_blank" rel="noopener">Tickets <span aria-hidden="true">→</span></a></span>
+      </div>
+      <div class="row">
+        <span class="date">Jan 2026</span>
+        <span class="prod">Madama Butterfly</span>
+        <span class="role">Sharpless (cover)</span>
+        <span class="house">Arizona Opera</span>
+        <span class="tickets"><a href="https://azopera.org/performances/madama-butterfly" target="_blank" rel="noopener">Tickets <span aria-hidden="true">→</span></a></span>
+      </div>
+      <div class="row">
+        <span class="date">2026–27</span>
+        <span class="prod">Turandot</span>
+        <span class="role">Mandarin / Ping (cover)</span>
+        <span class="house">Virginia Opera</span>
+        <span class="tickets"><a href="https://vaopera.org/events/" target="_blank" rel="noopener">Tickets <span aria-hidden="true">→</span></a></span>
+      </div>
     </div>
 
     <button class="expand" id="expand-recent" aria-expanded="false" aria-controls="recent concerts">
@@ -946,32 +1273,18 @@ section { position: relative; }
 </section>
 
 <!-- ===================== REEL ===================== -->
-<section class="reel section-pad grain" id="repertoire">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="num">No. 03 — The Reel</span>
-      <h2>On Stage.</h2>
-      <p class="kicker">Excerpts from recent stage and concert engagements.</p>
-    </div>
-
-    <div class="reel-stage reveal" id="reel-stage">
-      <!-- REEL_VIDEO — replace src with your final reel file, or swap <video> for <iframe src="…"> -->
-      <div class="video">
-        <video controls preload="metadata" playsinline poster="assets/welch-wto2024.jpg">
-          <!-- REEL_VIDEO — uncomment + point src at your final file:
-          <source src="REEL_VIDEO.mp4" type="video/mp4" />
-          -->
-        </video>
-        <!--
-          If using an embed instead, swap the <video> tag above for:
-          <iframe src="REEL_VIDEO" title="Yichen Xue — Selected Performances Reel"
-                  allow="autoplay; encrypted-media; fullscreen" allowfullscreen></iframe>
-        -->
+<section class="reel" id="repertoire">
+  <div class="reel-pin">
+    <!-- TODO: swap <img> for <video autoplay muted loop playsinline> when reel is ready -->
+    <img class="reel-bg" src="assets/welch-wto2024.jpg" alt="" aria-hidden="true" />
+    <div class="reel-grad reel-grad-top"></div>
+    <div class="reel-grad reel-grad-bot"></div>
+    <div class="reel-head">
+      <div class="section-head">
+        <span class="num">No. 03 — The Reel</span>
+        <p class="kicker">Excerpts from recent stage and concert engagements.</p>
       </div>
-      <img class="frame" src="assets/frame.png" alt="" aria-hidden="true" />
     </div>
-
-    <div class="reel-caption">Selected Performances — Reel</div>
   </div>
 </section>
 
@@ -1039,21 +1352,23 @@ section { position: relative; }
   <div class="wrap">
     <div class="section-head reveal">
       <span class="num">No. 05 — Recordings</span>
-      <h2>On Record.</h2>
       <p class="kicker">Music released with Etymology Records, available on Spotify.</p>
     </div>
 
     <div class="records-grid">
-      <div class="sleeve reveal" aria-hidden="true">
-        <div class="label">
-          Yichen Xue
-          <small>Etymology Records</small>
-        </div>
+      <div class="spotify-embed reveal">
+        <iframe
+          style="border-radius:12px"
+          src="https://open.spotify.com/embed/track/4PwC3JAq7Da28JXVNt14y9?utm_source=generator&theme=0"
+          width="100%" height="352"
+          frameBorder="0"
+          allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"></iframe>
       </div>
       <div class="records-body reveal">
-        <p class="lede">A growing catalogue of art-song and aria recordings, released with Etymology Records. New releases are added each season; listen end-to-end on Spotify, or follow for first-listens.</p>
-        <!-- SPOTIFY_URL placeholder -->
-        <a class="listen" href="#SPOTIFY_URL" target="_blank" rel="noopener">
+        <p class="lede">A growing catalogue of art-song and aria recordings, released with Etymology Records. New releases are added each season — listen end-to-end on Spotify, or follow for first-listens.</p>
+        <a class="listen" href="https://open.spotify.com/artist/3cbrG0MbM4PA1mGUjGlrlt" target="_blank" rel="noopener">
           Listen on Spotify <span aria-hidden="true">→</span>
         </a>
       </div>
@@ -1066,26 +1381,33 @@ section { position: relative; }
   <div class="wrap">
     <div class="section-head reveal">
       <span class="num">No. 06 — Gallery</span>
-      <h2>In Performance.</h2>
     </div>
 
-    <div class="gallery-grid">
-      <a class="tile lg reveal" href="#">
+    <div class="gallery-grid" id="gallery-grid">
+      <button class="tile lg reveal" type="button"
+              data-src="assets/butterfly.jpeg"
+              data-title="Madama Butterfly"
+              data-meta="Puccini · Opera Grand Rapids"
+              data-detail="As Yamadori / Imperial Commissioner — 2025 season.">
         <img src="assets/butterfly.jpeg" alt="Madama Butterfly" loading="lazy" />
         <div class="cap"><span class="title">Madama Butterfly</span><span class="meta">Puccini · Opera Grand Rapids</span></div>
-      </a>
-      <a class="tile md reveal" href="#">
+      </button>
+      <button class="tile md reveal" type="button"
+              data-src="assets/secret-gardener.jpg"
+              data-title="La finta giardiniera"
+              data-meta="Mozart · Arizona Opera"
+              data-detail="As Nardo — 2024 season.">
         <img src="assets/secret-gardener.jpg" alt="La finta giardiniera" loading="lazy" />
         <div class="cap"><span class="title">La finta giardiniera</span><span class="meta">Mozart · Arizona Opera</span></div>
-      </a>
-      <a class="tile sm reveal" href="#">
+      </button>
+      <button class="tile portrait reveal" type="button"
+              data-src="assets/silent-night.jpg"
+              data-title="Silent Night"
+              data-meta="Puts · Wolf Trap Opera"
+              data-detail="As Ponchel (cover) — 2020 season.">
         <img src="assets/silent-night.jpg" alt="Silent Night" loading="lazy" />
         <div class="cap"><span class="title">Silent Night</span><span class="meta">Puts · Wolf Trap Opera</span></div>
-      </a>
-      <a class="tile wd reveal" href="#">
-        <img src="assets/welch-wto2024.jpg" alt="Portrait" loading="lazy" />
-        <div class="cap"><span class="title">Portrait</span><span class="meta">Studio · 2024</span></div>
-      </a>
+      </button>
     </div>
   </div>
 </section>
@@ -1151,30 +1473,85 @@ section { position: relative; }
       <h2>Honors.</h2>
     </div>
 
-    <div class="two-col">
-      <div class="reveal">
-        <div class="col-head">Awards</div>
-        <ul class="list-rows">
-          <li><span class="yr">2025</span><span class="ttl">Met Opera Laffont — Encouragement Award</span><span class="where">New York</span></li>
-          <li><span class="yr">2025 · 26</span><span class="ttl">Martorella Voice Scholarship — National Finalist</span><span class="where">National</span></li>
-          <li><span class="yr">2024</span><span class="ttl">Gerda Lissner — Grant Winner</span><span class="where">New York</span></li>
-          <li><span class="yr">2024</span><span class="ttl">Career Bridges — Grant Winner</span><span class="where">New York</span></li>
-          <li><span class="yr">2023</span><span class="ttl">Opera Index — Emerging Artist Award</span><span class="where">New York</span></li>
-        </ul>
-      </div>
-
-      <div class="reveal">
-        <div class="col-head">Education &amp; Programs</div>
-        <ul class="list-rows">
-          <li><span class="yr">2026</span><span class="ttl">Resident Artist</span><span class="where">Glimmerglass Festival</span></li>
-          <li><span class="yr">2025</span><span class="ttl">Renée Fleming Fellow</span><span class="where">Aspen Music Festival</span></li>
-          <li><span class="yr">2024 · 26</span><span class="ttl">Studio Artist</span><span class="where">Arizona Opera</span></li>
-          <li><span class="yr">2024</span><span class="ttl">Studio Artist</span><span class="where">Wolf Trap Opera</span></li>
-          <li><span class="yr">2019 · 23</span><span class="ttl">MA Vocal Performance</span><span class="where">Hunter College–CUNY</span></li>
-          <li><span class="yr">2014 · 18</span><span class="ttl">BM Voice</span><span class="where">Manhattan School of Music</span></li>
-        </ul>
-      </div>
-    </div>
+    <ol class="timeline reveal" aria-label="Career timeline">
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2026</div>
+          <div class="tl-sub">Glimmerglass Festival</div>
+          <div class="tl-title">Resident Artist</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2025</div>
+          <div class="tl-sub">Aspen Music Festival</div>
+          <div class="tl-title">Renée Fleming Fellow</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2025</div>
+          <div class="tl-sub">Met Opera Laffont</div>
+          <div class="tl-title">Encouragement Award</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2025 · 26</div>
+          <div class="tl-sub">Martorella Voice Scholarship</div>
+          <div class="tl-title">National Finalist</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2024 · 26</div>
+          <div class="tl-sub">Arizona Opera</div>
+          <div class="tl-title">Studio Artist</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2024</div>
+          <div class="tl-sub">Wolf Trap Opera</div>
+          <div class="tl-title">Studio Artist</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2024</div>
+          <div class="tl-sub">Gerda Lissner Foundation</div>
+          <div class="tl-title">Grant Winner</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2024</div>
+          <div class="tl-sub">Career Bridges</div>
+          <div class="tl-title">Grant Winner</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2023</div>
+          <div class="tl-sub">Opera Index</div>
+          <div class="tl-title">Emerging Artist Award</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2019 — 23</div>
+          <div class="tl-sub">Hunter College–CUNY</div>
+          <div class="tl-title">MA Vocal Performance</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2014 — 18</div>
+          <div class="tl-sub">Manhattan School of Music</div>
+          <div class="tl-title">BM Voice</div>
+        </div>
+      </li>
+    </ol>
   </div>
 </section>
 
@@ -1207,8 +1584,7 @@ section { position: relative; }
         </div>
         <div>
           <span class="lbl">Recordings</span>
-          <!-- SPOTIFY_URL placeholder -->
-          <a href="#SPOTIFY_URL" target="_blank" rel="noopener">Spotify</a>
+          <a href="https://open.spotify.com/artist/3cbrG0MbM4PA1mGUjGlrlt" target="_blank" rel="noopener">Spotify</a>
         </div>
       </div>
     </div>
@@ -1218,18 +1594,35 @@ section { position: relative; }
 <!-- ===================== FOOTER ===================== -->
 <footer class="footer grain">
   <div class="wrap">
-    <div class="footer-wordmark">YICHEN&nbsp;XUE</div>
+    <div class="footer-wordmark">Yichen&nbsp;Xue</div>
     <div class="footer-meta">
       <div>© 2026 Yichen Xue</div>
       <div style="display:flex; gap:28px;">
         <a href="https://www.instagram.com/yichen_baritone/" target="_blank" rel="noopener">Instagram</a>
-        <a href="#SPOTIFY_URL" target="_blank" rel="noopener">Spotify</a>
+        <a href="https://open.spotify.com/artist/3cbrG0MbM4PA1mGUjGlrlt" target="_blank" rel="noopener">Spotify</a>
         <a href="mailto:zgxueyichen@gmail.com">Email</a>
       </div>
       <div>New York · United States</div>
     </div>
   </div>
 </footer>
+
+<!-- ===================== LIGHTBOX ===================== -->
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="lb-title">
+  <button class="lightbox-close" id="lb-close" aria-label="Close">×</button>
+  <button class="lightbox-nav lightbox-prev" id="lb-prev" aria-label="Previous">‹</button>
+  <button class="lightbox-nav lightbox-next" id="lb-next" aria-label="Next">›</button>
+  <div class="lightbox-stage">
+    <div class="lightbox-media">
+      <img id="lb-image" src="" alt="" />
+      <div class="lightbox-caption">
+        <span class="lb-title" id="lb-title"></span>
+        <span class="lb-meta" id="lb-meta"></span>
+        <span class="lb-detail" id="lb-detail"></span>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script>
 /* ---------- Nav: transparent over hero, solid after ---------- */
@@ -1255,6 +1648,56 @@ section { position: relative; }
     }
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
   els.forEach((el) => io.observe(el));
+})();
+
+/* ---------- Gallery lightbox ---------- */
+(function () {
+  const grid = document.getElementById('gallery-grid');
+  const lb = document.getElementById('lightbox');
+  const img = document.getElementById('lb-image');
+  const tEl = document.getElementById('lb-title');
+  const mEl = document.getElementById('lb-meta');
+  const dEl = document.getElementById('lb-detail');
+  const closeBtn = document.getElementById('lb-close');
+  const prevBtn = document.getElementById('lb-prev');
+  const nextBtn = document.getElementById('lb-next');
+  if (!grid || !lb) return;
+  const tiles = Array.from(grid.querySelectorAll('.tile'));
+  let idx = 0;
+
+  const render = (i) => {
+    const t = tiles[i];
+    idx = i;
+    img.src = t.dataset.src;
+    img.alt = t.dataset.title || '';
+    tEl.textContent = t.dataset.title || '';
+    mEl.textContent = t.dataset.meta || '';
+    dEl.textContent = t.dataset.detail || '';
+  };
+  const open = (i) => {
+    render(i);
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+  const close = () => {
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+  const step = (delta) => render((idx + delta + tiles.length) % tiles.length);
+
+  tiles.forEach((tile, i) => tile.addEventListener('click', () => open(i)));
+  closeBtn.addEventListener('click', close);
+  prevBtn.addEventListener('click', () => step(-1));
+  nextBtn.addEventListener('click', () => step(1));
+  lb.addEventListener('click', (e) => { if (e.target === lb) close(); });
+  document.addEventListener('keydown', (e) => {
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    if (e.key === 'ArrowLeft') step(-1);
+    if (e.key === 'ArrowRight') step(1);
+  });
 })();
 
 /* ---------- Expand Recent Seasons + Concerts together ---------- */
