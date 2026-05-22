@@ -859,9 +859,9 @@ body.menu-open { overflow: hidden; }
 @media (max-width: 820px) { .records-grid { grid-template-columns: 1fr; } }
 
 .track-credits {
-  margin-top: clamp(48px, 6vw, 80px);
-  padding-top: 28px;
-  border-top: 1px solid var(--hair);
+  margin-bottom: 28px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--hair);
 }
 .track-row {
   display: grid;
@@ -893,14 +893,15 @@ body.menu-open { overflow: hidden; }
 .track-meta {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
-  margin-top: 22px;
+  gap: 18px;
+  margin-top: 18px;
   padding-left: 76px;
   font-family: var(--button);
   font-size: 13px;
   letter-spacing: 0.02em;
   color: var(--muted);
 }
+.records-body .listen { margin-top: 8px; }
 @media (max-width: 720px) {
   .track-row { grid-template-columns: 44px 1fr; gap: 14px; }
   .track-num { font-size: 22px; }
@@ -950,15 +951,20 @@ body.menu-open { overflow: hidden; }
   background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.35) 22%, rgba(0,0,0,0) 50%);
   pointer-events: none; z-index: 1;
 }
-.tile.lg { grid-column: span 7; aspect-ratio: 3 / 2; }
-.tile.md { grid-column: span 5; aspect-ratio: 3 / 2; }
-.tile.wd { grid-column: span 7; aspect-ratio: 3 / 2; }
-.tile.sm { grid-column: span 5; aspect-ratio: 3 / 2; }
-.tile.full { grid-column: span 12; aspect-ratio: 21 / 9; }
-.tile.portrait { grid-column: 5 / span 4; aspect-ratio: 2 / 3; }
+/* Tetris layout: 8-col landscapes + 4-col portraits both span 2 rows;
+   row height is sized so neither crop exceeds ~10%. */
+.gallery-grid {
+  grid-auto-rows: clamp(160px, 19vw, 250px);
+  grid-auto-flow: dense;
+}
+.tile.tile-land { grid-column: span 8; grid-row: span 2; }
+.tile.tile-tall { grid-column: span 4; grid-row: span 2; }
+.tile.tile-wide { grid-column: span 12; grid-row: span 2; }
+.tile.tile-tall img { object-position: center 38%; }
 @media (max-width: 760px) {
-  .tile.lg, .tile.md, .tile.wd, .tile.sm, .tile.full { grid-column: span 12; aspect-ratio: 3 / 2; }
-  .tile.portrait { grid-column: 1 / -1; aspect-ratio: 2 / 3; }
+  .gallery-grid { grid-auto-rows: auto; }
+  .tile.tile-land, .tile.tile-wide { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 3 / 2; }
+  .tile.tile-tall { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 3 / 4; }
 }
 
 /* ---------- LIGHTBOX ---------- */
@@ -1076,6 +1082,60 @@ body.menu-open { overflow: hidden; }
 @media (max-width: 720px) {
   .lightbox-prev, .lightbox-next { display: none; }
 }
+
+/* ---------- PRESS ---------- */
+.press {
+  background: linear-gradient(180deg, #000 0%, #050913 12%, #0A1128 45%, #050913 80%, #000 100%);
+}
+.press-quote {
+  margin: 0 auto;
+  max-width: 880px;
+  text-align: center;
+  position: relative;
+}
+.press-quote::before {
+  content: "\201C";
+  display: block;
+  font-family: var(--display);
+  font-style: italic;
+  font-size: clamp(80px, 9vw, 140px);
+  line-height: 0.6;
+  color: var(--gold);
+  opacity: 0.8;
+  margin-bottom: 12px;
+}
+.press-quote blockquote {
+  margin: 0;
+  font-family: var(--display);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(22px, 2.4vw, 34px);
+  line-height: 1.4;
+  color: var(--cream);
+  letter-spacing: 0;
+}
+.press-quote figcaption {
+  margin-top: 36px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-family: var(--button);
+  color: var(--muted);
+}
+.press-author {
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  color: var(--cream);
+}
+.press-pub {
+  font-size: 14px;
+  letter-spacing: 0.04em;
+}
+.press-pub a {
+  border-bottom: 1px solid var(--hair);
+  transition: border-color 200ms ease, color 200ms ease;
+}
+.press-pub a:hover { color: var(--cream); border-color: var(--cream); }
 
 /* ---------- WORKED WITH ---------- */
 .worked {
@@ -1495,6 +1555,58 @@ body.menu-open { overflow: hidden; }
   </div>
 </section>
 
+<!-- ===================== GALLERY ===================== -->
+<section class="gallery section-pad grain" id="gallery">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">No. 03 — Gallery</span>
+    </div>
+
+    <div class="gallery-grid" id="gallery-grid">
+      <button class="tile tile-land reveal" type="button"
+              data-src="assets/butterfly.jpeg"
+              data-title="Madama Butterfly"
+              data-meta="Puccini · Opera Grand Rapids"
+              data-detail="As Yamadori / Imperial Commissioner — 2025 season.">
+        <img src="assets/butterfly.jpeg" alt="Madama Butterfly" loading="lazy" />
+        <div class="cap"><span class="title">Madama Butterfly</span><span class="meta">Puccini · Opera Grand Rapids</span></div>
+      </button>
+      <button class="tile tile-tall reveal" type="button"
+              data-src="assets/boheme-aspen-marcello.jpg"
+              data-title="La Bohème"
+              data-meta="Puccini · Aspen Music Festival"
+              data-detail="As Marcello at the Aspen Music Festival — 2025 season.">
+        <img src="assets/boheme-aspen-marcello.jpg" alt="As Marcello in La Bohème at Aspen Music Festival" loading="lazy" />
+        <div class="cap"><span class="title">La Bohème</span><span class="meta">Puccini · Aspen Music Festival</span></div>
+      </button>
+      <button class="tile tile-land reveal" type="button"
+              data-src="assets/boheme-aspen-polenzani.jpg"
+              data-title="La Bohème"
+              data-meta="Puccini · Aspen Music Festival"
+              data-detail="As Marcello, with Matthew Polenzani — 2025 season.">
+        <img src="assets/boheme-aspen-polenzani.jpg" alt="As Marcello in La Bohème at Aspen Music Festival with Matthew Polenzani" loading="lazy" />
+        <div class="cap"><span class="title">La Bohème</span><span class="meta">Puccini · Aspen Music Festival</span></div>
+      </button>
+      <button class="tile tile-tall reveal" type="button"
+              data-src="assets/silent-night.jpg"
+              data-title="Silent Night"
+              data-meta="Puts · Wolf Trap Opera"
+              data-detail="As Ponchel (cover) — 2020 season.">
+        <img src="assets/silent-night.jpg" alt="Silent Night" loading="lazy" />
+        <div class="cap"><span class="title">Silent Night</span><span class="meta">Puts · Wolf Trap Opera</span></div>
+      </button>
+      <button class="tile tile-wide reveal" type="button"
+              data-src="assets/secret-gardener.jpg"
+              data-title="La finta giardiniera"
+              data-meta="Mozart · Arizona Opera"
+              data-detail="As Nardo — 2024 season.">
+        <img src="assets/secret-gardener.jpg" alt="La finta giardiniera" loading="lazy" />
+        <div class="cap"><span class="title">La finta giardiniera</span><span class="meta">Mozart · Arizona Opera</span></div>
+      </button>
+    </div>
+  </div>
+</section>
+
 <!-- ===================== REEL ===================== -->
 <section class="reel" id="repertoire">
   <div class="reel-pin">
@@ -1507,12 +1619,6 @@ body.menu-open { overflow: hidden; }
               allowfullscreen></iframe>
       <div class="reel-grad reel-grad-top"></div>
       <div class="reel-grad reel-grad-bot"></div>
-    </div>
-    <div class="reel-head">
-      <div class="section-head">
-        <span class="num">No. 03 — The Reel</span>
-        <p class="kicker">Excerpts from recent stage and concert engagements.</p>
-      </div>
     </div>
   </div>
 </section>
@@ -1575,83 +1681,22 @@ body.menu-open { overflow: hidden; }
   </div>
 </section>
 
-<!-- ===================== RECORDINGS ===================== -->
-<section class="records section-pad grain" id="recordings">
+<!-- ===================== PRESS ===================== -->
+<section class="press section-pad grain" id="press">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="num">No. 05 — Recordings</span>
-      <p class="kicker">Music released with Etymology Records, available on Spotify.</p>
+      <span class="num">No. 05 — Press</span>
     </div>
 
-    <div class="records-grid">
-      <div class="spotify-embed reveal">
-        <iframe
-          style="border-radius:12px"
-          src="https://open.spotify.com/embed/track/4PwC3JAq7Da28JXVNt14y9?utm_source=generator&theme=0"
-          width="100%" height="352"
-          frameBorder="0"
-          allowfullscreen=""
-          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-          loading="lazy"></iframe>
-      </div>
-      <div class="records-body reveal">
-        <p class="lede">A growing catalogue of art-song and aria recordings, released with Etymology Records. New releases are added each season — listen end-to-end on Spotify, or follow for first-listens.</p>
-        <a class="listen" href="https://open.spotify.com/artist/3cbrG0MbM4PA1mGUjGlrlt" target="_blank" rel="noopener">
-          Listen on Spotify <span aria-hidden="true">→</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="track-credits reveal">
-      <div class="track-row">
-        <span class="track-num">01</span>
-        <div class="track-info">
-          <div class="track-title">Deh Vieni Alla Finestra</div>
-          <div class="track-artists">Wolfgang Amadeus Mozart · Yichen Xue · Sonia Bize</div>
-        </div>
-      </div>
-      <div class="track-meta">
-        <span>March 28, 2023</span>
-        <span>© 2023 Etymology Classics</span>
-        <span>℗ 2023 Etymology Classics</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================== GALLERY ===================== -->
-<section class="gallery section-pad grain" id="gallery">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <span class="num">No. 06 — Gallery</span>
-    </div>
-
-    <div class="gallery-grid" id="gallery-grid">
-      <button class="tile lg reveal" type="button"
-              data-src="assets/butterfly.jpeg"
-              data-title="Madama Butterfly"
-              data-meta="Puccini · Opera Grand Rapids"
-              data-detail="As Yamadori / Imperial Commissioner — 2025 season.">
-        <img src="assets/butterfly.jpeg" alt="Madama Butterfly" loading="lazy" />
-        <div class="cap"><span class="title">Madama Butterfly</span><span class="meta">Puccini · Opera Grand Rapids</span></div>
-      </button>
-      <button class="tile md reveal" type="button"
-              data-src="assets/secret-gardener.jpg"
-              data-title="La finta giardiniera"
-              data-meta="Mozart · Arizona Opera"
-              data-detail="As Nardo — 2024 season.">
-        <img src="assets/secret-gardener.jpg" alt="La finta giardiniera" loading="lazy" />
-        <div class="cap"><span class="title">La finta giardiniera</span><span class="meta">Mozart · Arizona Opera</span></div>
-      </button>
-      <button class="tile portrait reveal" type="button"
-              data-src="assets/silent-night.jpg"
-              data-title="Silent Night"
-              data-meta="Puts · Wolf Trap Opera"
-              data-detail="As Ponchel (cover) — 2020 season.">
-        <img src="assets/silent-night.jpg" alt="Silent Night" loading="lazy" />
-        <div class="cap"><span class="title">Silent Night</span><span class="meta">Puts · Wolf Trap Opera</span></div>
-      </button>
-    </div>
+    <figure class="press-quote reveal">
+      <blockquote>
+        Frank portrayed by Yichen Xue, had a pleasing baritone and strong acting ability and was an interesting amalgam of many skilled parts. He had charm, voice and elan and captivated us.
+      </blockquote>
+      <figcaption>
+        <span class="press-author">Nino Pantano</span>
+        <span class="press-pub"><a href="https://brooklyndiscovery.com/2019/07/martina-arroyos-prelude-to-performance-presents-a-sparkling-die-fledermaus/" target="_blank" rel="noopener">Brooklyn Discovery</a> · July 2019</span>
+      </figcaption>
+    </figure>
   </div>
 </section>
 
@@ -1659,7 +1704,7 @@ body.menu-open { overflow: hidden; }
 <section class="worked section-pad grain">
   <div class="wrap">
     <div class="section-head reveal">
-      <span class="num">No. 07 — Collaborators</span>
+      <span class="num">No. 06 — Collaborators</span>
       <h2>Collaborators.</h2>
     </div>
 
@@ -1707,6 +1752,47 @@ body.menu-open { overflow: hidden; }
           <li>Ron Raines</li>
           <li>Maitland Peters</li>
         </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== RECORDINGS ===================== -->
+<section class="records section-pad grain" id="recordings">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="num">No. 07 — Recordings</span>
+    </div>
+
+    <div class="records-grid">
+      <div class="spotify-embed reveal">
+        <iframe
+          style="border-radius:12px"
+          src="https://open.spotify.com/embed/track/4PwC3JAq7Da28JXVNt14y9?utm_source=generator&theme=0"
+          width="100%" height="352"
+          frameBorder="0"
+          allowfullscreen=""
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"></iframe>
+      </div>
+      <div class="records-body reveal">
+        <div class="track-credits">
+          <div class="track-row">
+            <span class="track-num">01</span>
+            <div class="track-info">
+              <div class="track-title">Deh Vieni Alla Finestra</div>
+              <div class="track-artists">Wolfgang Amadeus Mozart · Yichen Xue · Sonia Bize</div>
+            </div>
+          </div>
+          <div class="track-meta">
+            <span>March 28, 2023</span>
+            <span>© 2023 Etymology Classics</span>
+            <span>℗ 2023 Etymology Classics</span>
+          </div>
+        </div>
+        <a class="listen" href="https://open.spotify.com/artist/3cbrG0MbM4PA1mGUjGlrlt" target="_blank" rel="noopener">
+          Listen on Spotify <span aria-hidden="true">→</span>
+        </a>
       </div>
     </div>
   </div>
