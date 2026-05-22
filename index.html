@@ -201,10 +201,110 @@ section { position: relative; }
   transition: background 240ms ease, color 240ms ease;
 }
 .nav .inquiry:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
-.nav-toggle { display: none; }
+.nav-burger {
+  display: none;
+  width: 40px; height: 40px;
+  padding: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border: 1px solid var(--hair);
+  border-radius: 999px;
+  background: rgba(0,0,0,0.3);
+  cursor: pointer;
+  transition: border-color 200ms ease;
+}
+.nav-burger:hover { border-color: var(--cream); }
+.nav-burger span {
+  display: block;
+  width: 16px; height: 1px;
+  background: var(--cream);
+  transition: transform 280ms ease, opacity 280ms ease;
+}
+
+/* ---------- MOBILE MENU ---------- */
+.mobile-menu {
+  position: fixed;
+  top: 0; right: 0;
+  height: 100svh;
+  width: min(320px, 84vw);
+  background: #050913;
+  z-index: 110;
+  padding: 84px 28px 32px;
+  transform: translateX(100%);
+  transition: transform 420ms cubic-bezier(.2,.7,.2,1);
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid var(--hair);
+}
+.mobile-menu.open { transform: translateX(0); }
+.mobile-menu ul {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 4px;
+}
+.mobile-menu li a {
+  display: block;
+  padding: 14px 4px;
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: 0;
+  color: var(--cream);
+  border-bottom: 1px solid var(--hair);
+  transition: color 200ms ease;
+}
+.mobile-menu li a:hover { color: var(--gold); }
+.mobile-menu .mobile-menu-cta {
+  margin-top: 16px;
+  padding: 14px 18px;
+  text-align: center;
+  border: 1px solid var(--cream);
+  border-radius: 0;
+  font-family: var(--button);
+  font-size: 14px;
+  letter-spacing: 0.04em;
+  transition: background 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.mobile-menu .mobile-menu-cta:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--black);
+}
+.mobile-menu-close {
+  position: absolute;
+  top: 22px; right: 22px;
+  width: 40px; height: 40px;
+  border: 1px solid var(--hair);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--cream);
+  font-family: var(--display);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  transition: border-color 200ms ease;
+}
+.mobile-menu-close:hover { border-color: var(--cream); }
+.mobile-menu-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  z-index: 105;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 320ms ease;
+}
+.mobile-menu-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+body.menu-open { overflow: hidden; }
 
 @media (max-width: 880px) {
   .nav ul { display: none; }
+  .nav .inquiry { display: none; }
+  .nav-burger { display: inline-flex; }
   .nav { justify-content: space-between; }
 }
 
@@ -355,6 +455,23 @@ section { position: relative; }
   .hero-lower .tagline { text-align: left; }
   .hero-meta, .hero-meta-right { display: none; }
   .hero-cutout { height: 72svh; }
+
+  /* Slow left-to-right pan on mobile */
+  .hero-ground {
+    background-size: auto 110%;
+    background-position: 0% center;
+    animation: heroPan 28s ease-in-out infinite alternate;
+    will-change: background-position;
+  }
+}
+
+@keyframes heroPan {
+  from { background-position: 0% center; }
+  to   { background-position: 100% center; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-ground { animation: none !important; }
 }
 
 /* ---------- SECTION HEADINGS ---------- */
@@ -466,13 +583,13 @@ section { position: relative; }
 
 .expand {
   margin: 44px 0 0;
-  display: inline-flex; align-items: center; gap: 16px;
+  display: inline-flex; align-items: center; gap: 18px;
   font-family: var(--button);
   font-style: normal;
-  font-size: 15px;
+  font-size: 20px;
   letter-spacing: 0.02em;
   color: var(--cream);
-  padding: 12px 0;
+  padding: 14px 0;
 }
 .expand .chev { display: inline-block; width: 36px; height: 1px; background: var(--cream); position: relative; }
 .expand .chev::after {
@@ -483,6 +600,8 @@ section { position: relative; }
 .expand[aria-expanded="true"] .chev::after { transform: rotate(-135deg); }
 .recent, .concerts { display: none; }
 .recent.open, .concerts.open { display: block; }
+.worked-grid.collapsible { display: none; margin-top: 36px; }
+.worked-grid.collapsible.open { display: grid; }
 
 /* ---------- REEL — sticky parallax media ---------- */
 .reel {
@@ -495,16 +614,38 @@ section { position: relative; }
   top: 0;
   height: 100vh;
   width: 100%;
+  background: #000;
   overflow: hidden;
   isolation: isolate;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.reel-frame {
+  position: relative;
+  width: 100%;
+  height: min(56vh, 520px);
+  overflow: hidden;
+}
+@media (max-width: 760px) {
+  .reel-frame { height: min(42vh, 360px); }
 }
 .reel-bg {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: center;
+  position: absolute;
+  top: 50%; left: 50%;
+  width: max(100%, 99.56vh);
+  height: max(56vh, 56.25vw);
+  transform: translate(-50%, -50%);
+  border: 0;
   z-index: 1;
   filter: brightness(0.85) contrast(1.04) saturate(0.92);
+  pointer-events: none;
+}
+@media (max-width: 760px) {
+  .reel-bg {
+    width: max(100%, 74.67vh);
+    height: max(42vh, 56.25vw);
+  }
 }
 .reel-grad {
   position: absolute;
@@ -514,12 +655,12 @@ section { position: relative; }
 }
 .reel-grad-top {
   top: 0;
-  height: 35vh;
+  height: 28%;
   background: linear-gradient(to bottom, #000 0%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0) 100%);
 }
 .reel-grad-bot {
   bottom: 0;
-  height: 35vh;
+  height: 28%;
   background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0) 100%);
 }
 .reel-head {
@@ -1177,7 +1318,24 @@ section { position: relative; }
     <li><a href="#contact">Contact</a></li>
   </ul>
   <a class="inquiry" href="#contact">Inquiry</a>
+  <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<aside class="mobile-menu" id="mobile-menu" aria-hidden="true">
+  <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">×</button>
+  <ul>
+    <li><a href="#performance">Engagements</a></li>
+    <li><a href="#repertoire">Reel</a></li>
+    <li><a href="#biography">Biography</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#recordings">Recordings</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#contact" class="mobile-menu-cta">Inquiry</a></li>
+  </ul>
+</aside>
+<div class="mobile-menu-backdrop" id="mobile-menu-backdrop"></div>
 
 <!-- ===================== HERO ===================== -->
 <header class="hero grain" id="top">
@@ -1275,10 +1433,16 @@ section { position: relative; }
 <!-- ===================== REEL ===================== -->
 <section class="reel" id="repertoire">
   <div class="reel-pin">
-    <!-- TODO: swap <img> for <video autoplay muted loop playsinline> when reel is ready -->
-    <img class="reel-bg" src="assets/welch-wto2024.jpg" alt="" aria-hidden="true" />
-    <div class="reel-grad reel-grad-top"></div>
-    <div class="reel-grad reel-grad-bot"></div>
+    <div class="reel-frame">
+      <iframe class="reel-bg"
+              src="https://www.youtube.com/embed/XVvRCkDpfUU?autoplay=1&mute=1&loop=1&playlist=XVvRCkDpfUU&controls=0&showinfo=0&modestbranding=1&rel=0&playsinline=1&disablekb=1&iv_load_policy=3"
+              title="Yichen Xue — Selected Performances"
+              frameborder="0"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowfullscreen></iframe>
+      <div class="reel-grad reel-grad-top"></div>
+      <div class="reel-grad reel-grad-bot"></div>
+    </div>
     <div class="reel-head">
       <div class="section-head">
         <span class="num">No. 03 — The Reel</span>
@@ -1325,7 +1489,6 @@ section { position: relative; }
         <dl class="bio-meta">
           <div><dt>Voice</dt><dd>Baritone</dd></div>
           <div><dt>Height</dt><dd>6'4"</dd></div>
-          <div><dt>Visa</dt><dd>O-1 Visa Holder</dd></div>
           <div><dt>Based</dt><dd>New York City</dd></div>
           <div><dt>Education</dt><dd>BM Voice, Manhattan School of Music</dd></div>
           <div><dt>&nbsp;</dt><dd>MA Vocal Performance, Hunter College–CUNY</dd></div>
@@ -1420,7 +1583,11 @@ section { position: relative; }
       <h2>Collaborators.</h2>
     </div>
 
-    <div class="worked-grid">
+    <button class="expand" id="expand-worked" aria-expanded="false" aria-controls="worked-grid">
+      <span class="chev"></span><span>View Collaborators</span>
+    </button>
+
+    <div class="worked-grid collapsible" id="worked-grid">
       <div class="group reveal">
         <h4>Conductors</h4>
         <ul>
@@ -1567,8 +1734,7 @@ section { position: relative; }
         <a class="btn solid" href="mailto:zgxueyichen@gmail.com">
           Write to Yichen <span aria-hidden="true">→</span>
         </a>
-        <!-- RESUME_URL — replace with the live Google Drive link -->
-        <a class="btn" href="#RESUME_URL" target="_blank" rel="noopener">
+        <a class="btn" href="https://drive.google.com/drive/folders/1OqlGNLRQGz8GEaVZV0-ovv1Z8XFjM5rP?usp=sharing" target="_blank" rel="noopener">
           Download Résumé
         </a>
       </div>
@@ -1650,6 +1816,36 @@ section { position: relative; }
   els.forEach((el) => io.observe(el));
 })();
 
+/* ---------- Mobile menu ---------- */
+(function () {
+  const burger = document.getElementById('nav-burger');
+  const menu = document.getElementById('mobile-menu');
+  const backdrop = document.getElementById('mobile-menu-backdrop');
+  const closeBtn = document.getElementById('mobile-menu-close');
+  if (!burger || !menu) return;
+  const open = () => {
+    menu.classList.add('open');
+    backdrop.classList.add('open');
+    document.body.classList.add('menu-open');
+    burger.setAttribute('aria-expanded', 'true');
+    menu.setAttribute('aria-hidden', 'false');
+  };
+  const close = () => {
+    menu.classList.remove('open');
+    backdrop.classList.remove('open');
+    document.body.classList.remove('menu-open');
+    burger.setAttribute('aria-expanded', 'false');
+    menu.setAttribute('aria-hidden', 'true');
+  };
+  burger.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  backdrop.addEventListener('click', close);
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && menu.classList.contains('open')) close();
+  });
+})();
+
 /* ---------- Gallery lightbox ---------- */
 (function () {
   const grid = document.getElementById('gallery-grid');
@@ -1712,6 +1908,20 @@ section { position: relative; }
     recent.classList.toggle('open', !open);
     concerts.classList.toggle('open', !open);
     label.textContent = open ? 'View Recent Seasons' : 'Hide Recent Seasons';
+  });
+})();
+
+/* ---------- Expand Collaborators ---------- */
+(function () {
+  const btn = document.getElementById('expand-worked');
+  const grid = document.getElementById('worked-grid');
+  if (!btn || !grid) return;
+  const label = btn.querySelector('span:last-child');
+  btn.addEventListener('click', () => {
+    const open = btn.getAttribute('aria-expanded') === 'true';
+    btn.setAttribute('aria-expanded', String(!open));
+    grid.classList.toggle('open', !open);
+    label.textContent = open ? 'View Collaborators' : 'Hide Collaborators';
   });
 })();
 </script>
