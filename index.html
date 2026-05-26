@@ -3,20 +3,24 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Yichen Xue — Baritone</title>
-<meta name="description" content="Yichen Xue — American baritone. Press portfolio, recordings, and upcoming engagements." />
+<title>Yichen Xue - Baritone</title>
+<meta name="description" content="Yichen Xue - American baritone. Press portfolio, recordings, and upcoming engagements." />
 
 <!-- Open Graph / link preview -->
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content="Yichen Xue" />
-<meta property="og:title" content="Yichen Xue — Baritone" />
+<meta property="og:site_name" content="Yichen Xue - Baritone" />
+<meta property="og:title" content="Yichen Xue - Baritone" />
 <meta property="og:description" content="American baritone. Press portfolio, recordings, and upcoming engagements." />
 <meta property="og:url" content="https://yichenxue.com/" />
-<meta property="og:image" content="https://yichenxue.com/assets/butterfly-title.jpg" />
+<meta property="og:image" content="https://yichenxue.com/assets/main-headshot.jpeg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="1800" />
+<meta property="og:image:alt" content="Yichen Xue, baritone — portrait" />
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Yichen Xue — Baritone" />
+<meta name="twitter:title" content="Yichen Xue - Baritone" />
 <meta name="twitter:description" content="American baritone. Press portfolio, recordings, and upcoming engagements." />
-<meta name="twitter:image" content="https://yichenxue.com/assets/butterfly-title.jpg" />
+<meta name="twitter:image" content="https://yichenxue.com/assets/main-headshot.jpeg" />
+<meta name="twitter:image:alt" content="Yichen Xue, baritone — portrait" />
 
 <!--
   ================================================================
@@ -330,7 +334,7 @@ body.menu-open { overflow: hidden; }
 }
 .hero-ground {
   position: absolute; inset: 0;
-  background-image: url("assets/butterfly-title.jpg");
+  background-image: url("assets/hero-main.jpg?v=2");
   background-size: cover;
   background-position: center;
 }
@@ -371,8 +375,9 @@ body.menu-open { overflow: hidden; }
   user-select: none;
   z-index: 3;
   text-shadow:
-    0 2px 30px rgba(0,0,0,0.65),
-    0 1px 4px rgba(0,0,0,0.55);
+    0 6px 24px rgba(0,0,0,0.55),
+    0 2px 12px rgba(0,0,0,0.45),
+    0 1px 3px rgba(0,0,0,0.4);
 }
 .masthead .ampline {
   display: block;
@@ -950,20 +955,37 @@ body.menu-open { overflow: hidden; }
   background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.35) 22%, rgba(0,0,0,0) 50%);
   pointer-events: none; z-index: 1;
 }
-/* Tetris layout: 8-col landscapes + 4-col portraits both span 2 rows;
-   row height is sized so neither crop exceeds ~10%. */
+/* Tetris layout: mix of 8-col, 6-col, 12-col landscapes and 4-col portraits.
+   All tile spans pair up so rows are evenly filled (no negative space). */
 .gallery-grid {
   grid-auto-rows: clamp(160px, 19vw, 250px);
   grid-auto-flow: dense;
 }
 .tile.tile-land { grid-column: span 8; grid-row: span 2; }
+.tile.tile-half { grid-column: span 6; grid-row: span 2; }
 .tile.tile-tall { grid-column: span 4; grid-row: span 2; }
 .tile.tile-wide { grid-column: span 12; grid-row: span 2; }
 .tile.tile-tall img { object-position: center 38%; }
 @media (max-width: 760px) {
-  .gallery-grid { grid-auto-rows: auto; }
-  .tile.tile-land, .tile.tile-wide { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 3 / 2; }
-  .tile.tile-tall { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 3 / 4; }
+  .gallery-grid { grid-auto-rows: auto; grid-template-columns: 1fr; }
+  .tile { overflow: hidden; display: block; }
+  .tile.tile-land, .tile.tile-half, .tile.tile-wide,
+  .tile.tile-tall { grid-column: 1 / -1; grid-row: auto; }
+  .tile img {
+    width: 100%; height: auto;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    display: block;
+  }
+  .tile.tile-tall img { aspect-ratio: 3 / 4; }
+  .tile .cap {
+    position: static;
+    padding: 12px 4px 16px;
+    background: transparent;
+  }
+  .tile::after { display: none; }
+  .tile .cap .title { font-size: 15px; line-height: 1.25; }
+  .tile .cap .meta { font-size: 12px; }
 }
 
 /* ---------- LIGHTBOX ---------- */
@@ -1589,6 +1611,70 @@ body.menu-open { overflow: hidden; }
         <img src="assets/silent-night.jpg" alt="Silent Night" loading="lazy" />
         <div class="cap"><span class="title">Silent Night</span><span class="meta">Puts · Wolf Trap Opera</span></div>
       </button>
+      <button class="tile tile-half reveal" type="button"
+              data-src="assets/az-cenerentola-1.jpg"
+              data-title="La Cenerentola"
+              data-meta="Rossini · Arizona Opera"
+              data-detail="As Dandini at Arizona Opera — 2026 season.">
+        <img src="assets/az-cenerentola-1.jpg" alt="As Dandini in La Cenerentola at Arizona Opera" loading="lazy" />
+        <div class="cap"><span class="title">La Cenerentola</span><span class="meta">Rossini · Arizona Opera</span></div>
+      </button>
+      <button class="tile tile-half reveal" type="button"
+              data-src="assets/az-cenerentola-2.jpg"
+              data-title="La Cenerentola"
+              data-meta="Rossini · Arizona Opera"
+              data-detail="As Dandini at Arizona Opera — 2026 season.">
+        <img src="assets/az-cenerentola-2.jpg" alt="As Dandini in La Cenerentola at Arizona Opera" loading="lazy" />
+        <div class="cap"><span class="title">La Cenerentola</span><span class="meta">Rossini · Arizona Opera</span></div>
+      </button>
+      <button class="tile tile-wide reveal" type="button"
+              data-src="assets/az-cenerentola-3.jpg"
+              data-title="La Cenerentola"
+              data-meta="Rossini · Arizona Opera"
+              data-detail="As Dandini at Arizona Opera — 2026 season.">
+        <img src="assets/az-cenerentola-3.jpg" alt="As Dandini in La Cenerentola at Arizona Opera" loading="lazy" />
+        <div class="cap"><span class="title">La Cenerentola</span><span class="meta">Rossini · Arizona Opera</span></div>
+      </button>
+      <button class="tile tile-half reveal" type="button"
+              data-src="assets/az-boheme-schaunard-1.jpg"
+              data-title="La Bohème"
+              data-meta="Puccini · Arizona Opera"
+              data-detail="As Schaunard at Arizona Opera — 2025 season.">
+        <img src="assets/az-boheme-schaunard-1.jpg" alt="As Schaunard in La Bohème at Arizona Opera" loading="lazy" />
+        <div class="cap"><span class="title">La Bohème</span><span class="meta">Puccini · Arizona Opera</span></div>
+      </button>
+      <button class="tile tile-half reveal" type="button"
+              data-src="assets/az-boheme-schaunard-2.jpg"
+              data-title="La Bohème"
+              data-meta="Puccini · Arizona Opera"
+              data-detail="As Schaunard at Arizona Opera — 2025 season.">
+        <img src="assets/az-boheme-schaunard-2.jpg" alt="As Schaunard in La Bohème at Arizona Opera" loading="lazy" />
+        <div class="cap"><span class="title">La Bohème</span><span class="meta">Puccini · Arizona Opera</span></div>
+      </button>
+      <button class="tile tile-wide reveal" type="button"
+              data-src="assets/az-boheme-schaunard-3.jpg"
+              data-title="La Bohème"
+              data-meta="Puccini · Arizona Opera"
+              data-detail="As Schaunard at Arizona Opera — 2025 season.">
+        <img src="assets/az-boheme-schaunard-3.jpg" alt="As Schaunard in La Bohème at Arizona Opera" loading="lazy" />
+        <div class="cap"><span class="title">La Bohème</span><span class="meta">Puccini · Arizona Opera</span></div>
+      </button>
+      <button class="tile tile-half reveal" type="button"
+              data-src="assets/az-butterfly-commissioner.jpg"
+              data-title="Madama Butterfly"
+              data-meta="Puccini · Arizona Opera"
+              data-detail="As Imperial Commissioner at Arizona Opera.">
+        <img src="assets/az-butterfly-commissioner.jpg" alt="As Imperial Commissioner in Madama Butterfly at Arizona Opera" loading="lazy" />
+        <div class="cap"><span class="title">Madama Butterfly</span><span class="meta">Puccini · Arizona Opera</span></div>
+      </button>
+      <button class="tile tile-half reveal" type="button"
+              data-src="assets/az-finta-nardo.jpg"
+              data-title="La finta giardiniera"
+              data-meta="Mozart · Arizona Opera"
+              data-detail="As Nardo at Arizona Opera — 2024 season.">
+        <img src="assets/az-finta-nardo.jpg" alt="As Nardo in La finta giardiniera at Arizona Opera" loading="lazy" />
+        <div class="cap"><span class="title">La finta giardiniera</span><span class="meta">Mozart · Arizona Opera</span></div>
+      </button>
       <button class="tile tile-wide reveal" type="button"
               data-src="assets/secret-gardener.jpg"
               data-title="La finta giardiniera"
@@ -1596,6 +1682,22 @@ body.menu-open { overflow: hidden; }
               data-detail="As Nardo — 2024 season.">
         <img src="assets/secret-gardener.jpg" alt="La finta giardiniera" loading="lazy" />
         <div class="cap"><span class="title">La finta giardiniera</span><span class="meta">Mozart · Arizona Opera</span></div>
+      </button>
+      <button class="tile tile-half reveal" type="button"
+              data-src="assets/az-annual-gala.jpg"
+              data-title="Annual Gala"
+              data-meta="Arizona Opera"
+              data-detail="Annual Gala performance with Arizona Opera.">
+        <img src="assets/az-annual-gala.jpg" alt="Annual Gala with Arizona Opera" loading="lazy" />
+        <div class="cap"><span class="title">Annual Gala</span><span class="meta">Arizona Opera</span></div>
+      </button>
+      <button class="tile tile-half reveal" type="button"
+              data-src="assets/az-studio-cabaret.jpg"
+              data-title="Studio Cabaret"
+              data-meta="Arizona Opera"
+              data-detail="Studio Cabaret with the Marion Roose Pullin Studio Artists at Arizona Opera.">
+        <img src="assets/az-studio-cabaret.jpg" alt="Studio Cabaret with Arizona Opera" loading="lazy" />
+        <div class="cap"><span class="title">Studio Cabaret</span><span class="meta">Arizona Opera</span></div>
       </button>
     </div>
   </div>
