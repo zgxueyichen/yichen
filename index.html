@@ -623,82 +623,104 @@ body.menu-open { overflow: hidden; }
 .worked-grid.collapsible { display: none; margin-top: 36px; }
 .worked-grid.collapsible.open { display: grid; }
 
-/* ---------- REEL — sticky parallax media ---------- */
+/* ---------- REEL — full-viewport video, short fade ---------- */
 .reel {
   position: relative;
-  min-height: 220vh;
-  background: #000;
-}
-.reel-pin {
-  position: sticky;
-  top: 0;
   height: 100vh;
   width: 100%;
   background: #000;
   overflow: hidden;
   isolation: isolate;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
 }
 .reel-frame {
   position: relative;
-  width: 100%;
-  height: min(56vh, 520px);
+  flex: 1 1 auto;
   overflow: hidden;
-}
-@media (max-width: 760px) {
-  .reel-frame { height: min(42vh, 360px); }
+  width: 100%;
 }
 .reel-bg {
   position: absolute;
-  top: 50%; left: 50%;
-  width: max(120%, 142vh);
-  height: max(80vh, 67.5vw);
-  transform: translate(-50%, -50%);
+  inset: 0;
+  width: 100%;
+  height: 100%;
   border: 0;
   z-index: 1;
-  filter: brightness(0.85) contrast(1.04) saturate(0.92);
+}
+.reel-audio {
+  position: relative;
+  align-self: center;
+  margin: clamp(22px, 3vh, 40px) auto clamp(14px, 2vh, 22px);
+  flex: 0 0 auto;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  pointer-events: none;
+  padding: 12px 12px 12px 20px;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(253, 252, 248, 0.22);
+  border-radius: 999px;
+  box-shadow:
+    0 0 22px rgba(253, 252, 248, 0.22),
+    0 0 44px rgba(253, 252, 248, 0.10);
+  animation: audioPillGlow 2.6s ease-in-out infinite;
+  transition: transform 900ms cubic-bezier(.25,.85,.3,1), opacity 900ms ease;
+  transform-origin: center;
   will-change: transform;
 }
-@media (max-width: 760px) {
-  .reel-bg {
-    width: max(120%, 107vh);
-    height: max(60vh, 67.5vw);
+.reel-audio span {
+  display: block;
+  width: 4px;
+  height: 22px;
+  background: var(--cream);
+  border-radius: 2px;
+  margin-right: 2px;
+  box-shadow:
+    0 0 8px rgba(253, 252, 248, 0.75),
+    0 0 16px rgba(253, 252, 248, 0.45);
+  animation: audioBar 1.1s ease-in-out infinite;
+  transform-origin: center;
+}
+.reel-audio span:nth-child(1) { animation-delay: 0s; }
+.reel-audio span:nth-child(2) { animation-delay: 0.15s; }
+.reel-audio span:nth-child(3) { animation-delay: 0.3s; }
+.reel-audio span:nth-child(4) { animation-delay: 0.45s; margin-right: 6px; }
+.reel-audio em {
+  font-family: var(--button);
+  font-style: normal;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  color: var(--cream);
+  line-height: 1;
+  text-shadow: 0 0 8px rgba(253, 252, 248, 0.4);
+}
+@keyframes audioBar {
+  0%, 100% { transform: scaleY(0.3); }
+  50%      { transform: scaleY(1); }
+}
+@keyframes audioPillGlow {
+  0%, 100% {
+    box-shadow:
+      0 0 14px rgba(253, 252, 248, 0.16),
+      0 0 28px rgba(253, 252, 248, 0.06);
+  }
+  50% {
+    box-shadow:
+      0 0 22px rgba(253, 252, 248, 0.30),
+      0 0 44px rgba(253, 252, 248, 0.14);
   }
 }
-.reel-grad {
-  position: absolute;
-  left: 0; right: 0;
-  z-index: 2;
-  pointer-events: none;
+@media (max-width: 760px) {
+  .reel-audio { display: none; }
 }
-.reel-grad-top {
-  top: 0;
-  height: 28%;
-  background: linear-gradient(to bottom, #000 0%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0) 100%);
+@media (prefers-reduced-motion: reduce) {
+  .reel-audio { animation: none; }
+  .reel-audio span { animation: none; transform: scaleY(0.65); }
 }
-.reel-grad-bot {
-  bottom: 0;
-  height: 28%;
-  background: linear-gradient(to top, #000 0%, rgba(0,0,0,0.5) 55%, rgba(0,0,0,0) 100%);
-}
-.reel-head {
-  position: absolute;
-  inset: 0;
-  z-index: 3;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 var(--gutter);
-}
-.reel-head .section-head { margin-bottom: 0; }
-.reel-head .num,
-.reel-head .kicker {
-  text-shadow: 0 1px 4px rgba(0,0,0,0.6);
-}
-.reel-head .kicker { margin: 14px auto 0; }
 
 /* ---------- BIOGRAPHY ---------- */
 .bio {
@@ -1559,10 +1581,10 @@ body.menu-open { overflow: hidden; }
       <div class="row"><span class="date">May 2026</span><span class="prod">Madama Butterfly</span><span class="role">Yamadori / Commissioner</span><span class="house">Opera Grand Rapids</span></div>
       <div class="row"><span class="date">2025</span><span class="prod">La Bohème</span><span class="role">Marcello</span><span class="house">Aspen Music Festival</span></div>
       <div class="row"><span class="date">2025</span><span class="prod">La Bohème</span><span class="role">Schaunard</span><span class="house">Arizona Opera</span></div>
-      <div class="row"><span class="date">2024</span><span class="prod">La finta giardiniera</span><span class="role">Nardo</span><span class="house">Arizona Opera</span></div>
-      <div class="row"><span class="date">2024</span><span class="prod">Aida</span><span class="role">Amonasro (cover)</span><span class="house">Arizona Opera</span></div>
-      <div class="row"><span class="date">2022</span><span class="prod">La Bohème</span><span class="role">Schaunard (cover)</span><span class="house">Wolf Trap Opera</span></div>
-      <div class="row"><span class="date">2020</span><span class="prod">Silent Night</span><span class="role">Ponchel (cover)</span><span class="house">Wolf Trap Opera</span></div>
+      <div class="row"><span class="date">2025</span><span class="prod">La finta giardiniera</span><span class="role">Nardo</span><span class="house">Arizona Opera</span></div>
+      <div class="row"><span class="date">2025</span><span class="prod">Aida</span><span class="role">Amonasro (cover)</span><span class="house">Arizona Opera</span></div>
+      <div class="row"><span class="date">2024</span><span class="prod">La Bohème</span><span class="role">Schaunard (cover)</span><span class="house">Wolf Trap Opera</span></div>
+      <div class="row"><span class="date">2024</span><span class="prod">Silent Night</span><span class="role">Ponchel (cover)</span><span class="house">Wolf Trap Opera</span></div>
     </div>
 
     <div class="concerts" id="concerts">
@@ -1705,17 +1727,17 @@ body.menu-open { overflow: hidden; }
 
 <!-- ===================== REEL ===================== -->
 <section class="reel" id="repertoire">
-  <div class="reel-pin">
-    <div class="reel-frame">
-      <iframe class="reel-bg"
-              src="https://www.youtube.com/embed/XVvRCkDpfUU?autoplay=1&mute=1&loop=1&playlist=XVvRCkDpfUU&modestbranding=1&rel=0&playsinline=1&iv_load_policy=3"
-              title="Yichen Xue — Selected Performances"
-              frameborder="0"
-              allow="autoplay; encrypted-media; picture-in-picture; fullscreen"
-              allowfullscreen></iframe>
-      <div class="reel-grad reel-grad-top"></div>
-      <div class="reel-grad reel-grad-bot"></div>
-    </div>
+  <div class="reel-audio" id="reel-audio">
+    <span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span><span aria-hidden="true"></span>
+    <em>Sound on for the full experience</em>
+  </div>
+  <div class="reel-frame">
+    <iframe class="reel-bg"
+            src="https://www.youtube.com/embed/XVvRCkDpfUU?playsinline=1"
+            title="Yichen Xue — Selected Performances"
+            frameborder="0"
+            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+            allowfullscreen></iframe>
   </div>
 </section>
 
@@ -2070,44 +2092,6 @@ body.menu-open { overflow: hidden; }
     }
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
   els.forEach((el) => io.observe(el));
-})();
-
-/* ---------- Reel parallax pan ---------- */
-(function () {
-  const section = document.querySelector('.reel');
-  const bg = document.querySelector('.reel-bg');
-  if (!section || !bg) return;
-
-  // Skip on reduced motion
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-
-  const MAX_SHIFT = 18; // percent of iframe height — keep < (oversize/2)
-  let ticking = false;
-
-  const update = () => {
-    const rect = section.getBoundingClientRect();
-    const winH = window.innerHeight;
-    const total = rect.height - winH;
-    if (total <= 0) { ticking = false; return; }
-    const scrolled = -rect.top;
-    const progress = Math.max(0, Math.min(1, scrolled / total));
-    // 0 → top of video visible (iframe shifted DOWN, +shift)
-    // 1 → bottom of video visible (iframe shifted UP, -shift)
-    const shift = (0.5 - progress) * 2 * MAX_SHIFT;
-    bg.style.transform = `translate(-50%, calc(-50% + ${shift}%))`;
-    ticking = false;
-  };
-
-  const onScroll = () => {
-    if (!ticking) {
-      requestAnimationFrame(update);
-      ticking = true;
-    }
-  };
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll, { passive: true });
-  update();
 })();
 
 /* ---------- Mobile menu ---------- */
