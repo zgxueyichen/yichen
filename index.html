@@ -7,6 +7,8 @@
 <meta name="description" content="Official website of Yichen Xue, a baritone and opera singer currently based in New York. Explore performances, repertoire, recordings, and booking information." />
 <link rel="canonical" href="https://yichenxue.com/" />
 <meta name="theme-color" content="#0A1128" />
+<link rel="icon" type="image/png" sizes="250x250" href="assets/yichen-monogram-mini.png" />
+<link rel="apple-touch-icon" sizes="250x250" href="assets/yichen-monogram-mini.png" />
 <link rel="preload" as="image" href="assets/optimized/hero-main-1920.webp" imagesrcset="assets/optimized/hero-main-960.webp 960w, assets/optimized/hero-main-1920.webp 1920w" imagesizes="100vw" fetchpriority="high" />
 
 <!-- Open Graph / link preview -->
@@ -286,10 +288,21 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   border-bottom: 1px solid var(--hair);
 }
 .nav .mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  white-space: nowrap;
   font-family: var(--display);
   font-size: 20px;
   letter-spacing: 0.01em;
   font-weight: 500;
+}
+.nav .mark img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: contain;
 }
 .nav ul {
   list-style: none; margin: 0 auto; padding: 0;
@@ -1554,6 +1567,13 @@ body.menu-open { overflow: hidden; }
   text-align: center;
   margin: 0 0 56px;
 }
+.footer-monogram {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px;
+  border-radius: 50%;
+  object-fit: contain;
+}
 .footer-meta {
   display: flex; flex-wrap: wrap; justify-content: space-between; gap: 18px;
   font-family: var(--button); font-size: 14px; letter-spacing: 0.02em; color: var(--muted);
@@ -1586,7 +1606,10 @@ body.menu-open { overflow: hidden; }
 
 <!-- ===================== NAV ===================== -->
 <nav class="nav" id="nav" aria-label="Primary">
-  <a class="mark" href="#top">Yichen&nbsp;Xue</a>
+  <a class="mark" href="#top" aria-label="Yichen Xue — Home">
+    <img src="assets/yichen-monogram-mini.png" alt="" width="250" height="250" decoding="async" />
+    <span>Yichen&nbsp;Xue</span>
+  </a>
   <ul>
     <li><a href="#performance">Engagements</a></li>
     <li><a href="#repertoire">Repertoire</a></li>
@@ -2208,7 +2231,10 @@ body.menu-open { overflow: hidden; }
 <!-- ===================== FOOTER ===================== -->
 <footer class="footer grain">
   <div class="wrap">
-    <div class="footer-wordmark">Yichen&nbsp;Xue</div>
+    <div class="footer-wordmark">
+      <img class="footer-monogram" src="assets/yichen-monogram-mini.png" alt="" width="250" height="250" loading="lazy" decoding="async" />
+      Yichen&nbsp;Xue
+    </div>
     <div class="footer-meta">
       <div>© 2026 Yichen Xue · Updated <time datetime="2026-10-05">October 5, 2026</time></div>
       <div style="display:flex; gap:28px;">
