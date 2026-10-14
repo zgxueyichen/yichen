@@ -662,7 +662,7 @@ body.menu-open { overflow: hidden; }
   display: grid;
   grid-template-columns: 90px minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1fr) auto;
   gap: 24px;
-  padding: 22px 0;
+  padding: 28px 0;
   border-bottom: 1px solid var(--hair);
   align-items: baseline;
 }
@@ -690,22 +690,31 @@ body.menu-open { overflow: hidden; }
 }
 .row .prod {
   font-family: var(--display);
-  font-size: clamp(22px, 2.2vw, 30px);
+  color: rgba(253, 252, 248, 0.68);
+  font-size: clamp(21px, 1.9vw, 26px);
   letter-spacing: 0;
   line-height: 1.1;
 }
 .row .role {
   font-family: var(--display);
   font-style: italic;
-  font-size: clamp(22px, 2.2vw, 30px);
-  line-height: 1.1;
+  font-weight: 500;
+  font-size: clamp(21px, 1.9vw, 26px);
+  line-height: 1.2;
   color: var(--cream);
 }
 .row .house {
   font-family: var(--display);
-  font-size: clamp(22px, 2.2vw, 30px);
-  line-height: 1.1;
-  color: var(--cream);
+  font-size: clamp(21px, 1.9vw, 26px);
+  line-height: 1.2;
+  color: var(--gold);
+}
+.row .cover {
+  display: inline-block; vertical-align: 0.25em; margin-left: 6px;
+  font-family: var(--body); font-style: normal; font-weight: 400;
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted); border: 1px solid var(--hair); border-radius: 999px;
+  padding: 3px 8px 2px; line-height: 1;
 }
 @media (max-width: 760px) {
   .row {
@@ -713,7 +722,7 @@ body.menu-open { overflow: hidden; }
     gap: 8px;
     padding: 20px 0;
   }
-  .row .prod, .row .role, .row .house { font-size: 22px; }
+  .row .prod, .row .role, .row .house { font-size: 20px; }
   .row .tickets { margin-top: 6px; }
 }
 
@@ -1724,7 +1733,7 @@ body.menu-open { overflow: hidden; }
       <div class="row">
         <span class="date">Mar 2027</span>
         <span class="prod">Turandot</span>
-        <span class="role">Mandarin / Ping (cover)</span>
+        <span class="role">Mandarin / Ping <span class="cover">cover</span></span>
         <span class="house">Virginia Opera</span>
       </div>
     </div>
@@ -1735,13 +1744,13 @@ body.menu-open { overflow: hidden; }
       <div class="row"><span class="date">Jul 2026</span><span class="prod">Madama Butterfly</span><span class="role">Imperial Commissioner</span><span class="house">Glimmerglass Festival</span></div>
       <div class="row"><span class="date">May 2026</span><span class="prod">Madama Butterfly</span><span class="role">Yamadori / Imperial Commissioner</span><span class="house">Opera Grand Rapids</span></div>
       <div class="row"><span class="date">Apr 2026</span><span class="prod">La Cenerentola</span><span class="role">Dandini</span><span class="house">Arizona Opera</span></div>
-      <div class="row"><span class="date">Jan–Feb 2026</span><span class="prod">Madama Butterfly</span><span class="role">Yamadori / Imperial Commissioner / Sharpless (cover)</span><span class="house">Arizona Opera</span></div>
+      <div class="row"><span class="date">Jan–Feb 2026</span><span class="prod">Madama Butterfly</span><span class="role">Yamadori / Imperial Commissioner / Sharpless <span class="cover">cover</span></span><span class="house">Arizona Opera</span></div>
       <div class="row"><span class="date">2025</span><span class="prod">La Bohème</span><span class="role">Marcello</span><span class="house">Aspen Music Festival</span></div>
       <div class="row"><span class="date">2025</span><span class="prod">La Bohème</span><span class="role">Schaunard</span><span class="house">Arizona Opera</span></div>
       <div class="row"><span class="date">2025</span><span class="prod">La finta giardiniera</span><span class="role">Nardo</span><span class="house">Arizona Opera</span></div>
-      <div class="row"><span class="date">2025</span><span class="prod">Aida</span><span class="role">Amonasro (cover)</span><span class="house">Arizona Opera</span></div>
-      <div class="row"><span class="date">2024</span><span class="prod">La Bohème</span><span class="role">Schaunard (cover)</span><span class="house">Wolf Trap Opera</span></div>
-      <div class="row"><span class="date">2024</span><span class="prod">Silent Night</span><span class="role">Ponchel (cover)</span><span class="house">Wolf Trap Opera</span></div>
+      <div class="row"><span class="date">2025</span><span class="prod">Aida</span><span class="role">Amonasro <span class="cover">cover</span></span><span class="house">Arizona Opera</span></div>
+      <div class="row"><span class="date">2024</span><span class="prod">La Bohème</span><span class="role">Schaunard <span class="cover">cover</span></span><span class="house">Wolf Trap Opera</span></div>
+      <div class="row"><span class="date">2024</span><span class="prod">Silent Night</span><span class="role">Ponchel <span class="cover">cover</span></span><span class="house">Wolf Trap Opera</span></div>
       <div class="row"><span class="date">2019</span><span class="prod">Die Fledermaus</span><span class="role">Frank</span><span class="house">Martina Arroyo’s Prelude to Performance</span></div>
     </div>
     <div class="concerts" id="concerts">
