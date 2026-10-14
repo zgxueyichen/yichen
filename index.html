@@ -15,7 +15,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Yichen Xue" />
 <meta property="og:title" content="Yichen Xue | Opera Singer &amp; Baritone" />
-<meta property="og:description" content="Performances, repertoire, recordings, and biography of baritone Yichen Xue, currently based in New York. Casting, concert, and management inquiries welcome." />
+<meta property="og:description" content="Performances, repertoire, recordings, and biography of baritone Yichen Xue, currently based in New York. Casting, concert, and press inquiries welcome." />
 <meta property="og:url" content="https://yichenxue.com/" />
 <meta property="og:image" content="https://yichenxue.com/assets/main-headshot.jpeg" />
 <meta property="og:image:width" content="1200" />
@@ -23,7 +23,7 @@
 <meta property="og:image:alt" content="Yichen Xue, baritone — portrait" />
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Yichen Xue | Opera Singer &amp; Baritone" />
-<meta name="twitter:description" content="Performances, repertoire, recordings, and biography of baritone Yichen Xue, currently based in New York. Casting, concert, and management inquiries welcome." />
+<meta name="twitter:description" content="Performances, repertoire, recordings, and biography of baritone Yichen Xue, currently based in New York. Casting, concert, and press inquiries welcome." />
 <meta name="twitter:image" content="https://yichenxue.com/assets/main-headshot.jpeg" />
 <meta name="twitter:image:alt" content="Yichen Xue, baritone — portrait" />
 
@@ -63,7 +63,7 @@
       "@id": "https://yichenxue.com/#profile",
       "url": "https://yichenxue.com/",
       "name": "Yichen Xue | Opera Singer & Baritone",
-      "dateModified": "2026-10-05",
+      "dateModified": "2026-10-13",
       "mainEntity": { "@id": "https://yichenxue.com/#person" },
       "isPartOf": { "@id": "https://yichenxue.com/#website" }
     }
@@ -839,6 +839,18 @@ body.menu-open { overflow: hidden; }
   .reel-audio { animation: none; }
   .reel-audio span { animation: none; transform: scaleY(0.65); }
 }
+
+
+.reel-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(28px, 3.5vw, 48px); }
+@media (max-width: 820px) { .reel-grid { grid-template-columns: 1fr; } }
+.reel-item { margin: 0; min-width: 0; }
+.reel-item figcaption { margin-top: 18px; display: grid; gap: 4px; }
+.reel-item figcaption p { margin: 0; }
+.reel-title { font-family: var(--display); font-style: italic; font-size: clamp(22px, 2.2vw, 28px); line-height: 1.2; color: var(--cream); }
+.reel-work { font-family: var(--body); font-size: 15px; color: var(--cream); }
+.reel-meta { font-family: var(--body); font-size: 14px; line-height: 1.55; color: var(--muted); }
+.reel-meta a { color: var(--muted); text-decoration: underline; text-underline-offset: 4px; }
+.reel-meta a:hover { color: var(--cream); }
 
 /* ---------- BIOGRAPHY ---------- */
 .bio {
@@ -1669,7 +1681,6 @@ body.menu-open { overflow: hidden; }
   <div class="wrap">
     <div class="profile-heading">
       <h2 id="profile-heading">Yichen Xue, at a glance.</h2>
-      <p class="updated">Updated <time datetime="2026-10-05">October 5, 2026</time></p>
     </div>
     <p class="profile-intro">Yichen Xue is a baritone and opera singer currently based in New York, with performances at Arizona Opera, The Glimmerglass Festival, and Aspen Music Festival, and cover credits at Wolf Trap Opera.</p>
     <div class="profile-grid">
@@ -1697,7 +1708,7 @@ body.menu-open { overflow: hidden; }
       <a class="btn" href="downloads/Yichen-Xue-Baritone-Resume-2026.pdf" download>Résumé · PDF</a>
       <a class="btn" href="#reel">Watch the reel</a>
     </div>
-    <p class="profile-management">Casting, concert, and press inquiries: <a href="mailto:zgxueyichen@gmail.com">zgxueyichen@gmail.com</a>. Management inquiries welcome.</p>
+    <p class="profile-management">Casting, concert, and press inquiries: <a href="mailto:zgxueyichen@gmail.com">zgxueyichen@gmail.com</a>.</p>
   </div>
 </section>
 
@@ -1792,17 +1803,43 @@ body.menu-open { overflow: hidden; }
   <div class="wrap">
     <div class="section-head reveal">
       <h2 id="reel-heading">Performance reel.</h2>
-      <p class="kicker">Selected performances by baritone Yichen Xue.</p>
+      <p class="kicker">Recent arias with piano.</p>
     </div>
-    <div class="reel-frame">
-      <iframe class="reel-bg"
-              src="https://www.youtube.com/embed/G64aDrfBa8I?playsinline=1"
-              title="Yichen Xue, baritone — selected opera performances"
-              loading="lazy"
-              allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
-              allowfullscreen></iframe>
+    <div class="reel-grid">
+      <figure class="reel-item">
+        <div class="reel-frame">
+          <iframe class="reel-bg"
+                  src="https://www.youtube.com/embed/G64aDrfBa8I?playsinline=1"
+                  title="Yichen Xue, baritone — Come un'ape ne' giorni d'aprile, La Cenerentola"
+                  loading="lazy"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                  allowfullscreen></iframe>
+        </div>
+        <figcaption>
+          <p class="reel-title">Come un'ape ne' giorni d'aprile</p>
+          <p class="reel-work">Dandini · <em>La Cenerentola</em> · Rossini</p>
+          <p class="reel-meta">Anna Betka, piano · Glimmerglass Rehearsal Hall · <time datetime="2026-08-04">August 4, 2026</time></p>
+          <p class="reel-meta"><a href="https://www.youtube.com/watch?v=G64aDrfBa8I" target="_blank" rel="noopener">Watch on YouTube <span aria-hidden="true">↗</span></a></p>
+        </figcaption>
+      </figure>
+      <figure class="reel-item">
+        <div class="reel-frame">
+          <iframe class="reel-bg"
+                  src="https://www.youtube.com/embed/XVvRCkDpfUU?playsinline=1"
+                  title="Yichen Xue, baritone — Ah! per sempre io ti perdei, I puritani"
+                  loading="lazy"
+                  allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen"
+                  allowfullscreen></iframe>
+        </div>
+        <figcaption>
+          <p class="reel-title">Ah! per sempre io ti perdei</p>
+          <p class="reel-work">Riccardo · <em>I puritani</em> · Bellini</p>
+          <p class="reel-meta">Jayne Abe, piano · Aspen Music Festival, Harry Teague Pavilion · <time datetime="2025-07-22">July 22, 2025</time></p>
+          <p class="reel-meta"><a href="https://youtu.be/XVvRCkDpfUU" target="_blank" rel="noopener">Watch on YouTube <span aria-hidden="true">↗</span></a></p>
+        </figcaption>
+      </figure>
     </div>
-    <p class="media-description" style="margin-top:24px"><a href="https://www.youtube.com/watch?v=G64aDrfBa8I" target="_blank" rel="noopener">Watch on YouTube <span aria-hidden="true">↗</span></a> · <a href="#recordings">Listen to the Mozart recording</a>. For current audition repertoire and recording inquiries, contact Yichen by <a href="mailto:zgxueyichen@gmail.com">direct inquiry</a>.</p>
+    <p class="media-description" style="margin-top:32px"><a href="#recordings">Listen to the Mozart recording</a>. For current audition repertoire and recording inquiries, contact Yichen by <a href="mailto:zgxueyichen@gmail.com">direct inquiry</a>.</p>
   </div>
 </section>
 
@@ -1824,7 +1861,7 @@ body.menu-open { overflow: hidden; }
 
       <div class="bio-body reveal">
         <p class="dropcap">
-          Baritone Yichen Xue is a Resident Artist at The Glimmerglass Festival, appearing in <em>Fellow Travelers</em> (Senator Potter / General Airlie / Bartender) and <em>Madama Butterfly</em> (Imperial Commissioner).
+          Baritone Yichen Xue was a 2026 Resident Artist at The Glimmerglass Festival, where he appeared in <em>Fellow Travelers</em> (Senator Potter / General Airlie / Bartender) and <em>Madama Butterfly</em> (Imperial Commissioner).
         </p>
 
         <p>
@@ -1855,7 +1892,7 @@ body.menu-open { overflow: hidden; }
 
     <div class="bio-inset reveal">
       <figure style="margin:0">
-        <img src="assets/with-renee-fleming.jpg" alt="Yichen Xue with Renée Fleming at Aspen Music Festival" />
+        <img src="assets/optimized/with-renee-fleming-1200.webp" srcset="assets/optimized/with-renee-fleming-640.webp 640w, assets/optimized/with-renee-fleming-1200.webp 1200w" sizes="(max-width: 820px) 92vw, 600px" width="1200" height="800" loading="lazy" decoding="async" alt="Yichen Xue with Renée Fleming at Aspen Music Festival" />
         <figcaption class="bio-caption" style="margin-top:14px">With Renée Fleming · Aspen, 2025</figcaption>
       </figure>
       <div class="text">
@@ -1882,18 +1919,20 @@ body.menu-open { overflow: hidden; }
       <div class="group reveal">
         <h4>Conductors</h4>
         <ul>
-          <li>Brian Demaris</li>
+          <li>Kelly Kuo</li>
+          <li>Joseph Colaneri</li>
           <li>Enrique Mazzola</li>
-          <li>Steven Osgood</li>
           <li>Patrick Summers</li>
+          <li>Steven Osgood</li>
+          <li>Brian DeMaris</li>
         </ul>
       </div>
       <div class="group reveal">
         <h4>Directors</h4>
         <ul>
+          <li>Kevin Newbury</li>
           <li>Katherine M. Carter</li>
           <li>Mo Zhou</li>
-          <li>Sara Erde</li>
           <li>Dona D. Vaughn</li>
           <li>Alan Fischer</li>
         </ul>
@@ -1902,21 +1941,24 @@ body.menu-open { overflow: hidden; }
         <h4>Coaches</h4>
         <ul>
           <li>Katherine Kozak</li>
-          <li>Grant Loehnig</li>
+          <li>Christopher Devlin</li>
           <li>Kirill Kuzmin</li>
+          <li>Grant Loehnig</li>
+          <li>David Mayfield</li>
           <li>Thomas Muraco</li>
         </ul>
       </div>
       <div class="group reveal">
         <h4>Composers</h4>
         <ul>
-          <li>Ruo Huang</li>
+          <li>Huang Ruo</li>
           <li>Nell Shaw Cohen</li>
         </ul>
         <h4 style="margin-top:36px">Voice Teachers</h4>
         <ul>
-          <li>Ron Raines</li>
+          <li>Ron Raines (current)</li>
           <li>Maitland Peters</li>
+          <li>Keping Li</li>
         </ul>
       </div>
     </div>
@@ -2236,7 +2278,7 @@ body.menu-open { overflow: hidden; }
       Yichen&nbsp;Xue
     </div>
     <div class="footer-meta">
-      <div>© 2026 Yichen Xue · Updated <time datetime="2026-10-05">October 5, 2026</time></div>
+      <div>© 2026 Yichen Xue</div>
       <div style="display:flex; gap:28px;">
         <a href="https://www.instagram.com/yichen_baritone/" target="_blank" rel="noopener">Instagram</a>
         <a href="https://open.spotify.com/artist/3cbrG0MbM4PA1mGUjGlrlt" target="_blank" rel="noopener">Spotify</a>
