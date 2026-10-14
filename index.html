@@ -216,19 +216,28 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   font-size: clamp(32px, 4vw, 52px); line-height: 1.1;
 }
 .updated { margin: 0; color: var(--muted); font-family: var(--button); font-size: 13px; }
-.profile-intro { max-width: 68ch; margin: 22px 0 32px; color: var(--cream); }
-.profile-grid { display: grid; grid-template-columns: 1fr 1.5fr 1fr; gap: 32px; }
-.profile-grid > div { border-top: 1px solid var(--hair); padding-top: 20px; }
+.profile-intro { max-width: 62ch; margin: 22px 0 40px; color: var(--cream); font-size: 18px; line-height: 1.6; }
+.profile-grid { display: grid; grid-template-columns: 1fr 1.4fr 1fr; gap: clamp(28px, 3.5vw, 48px); }
+.profile-grid > div { border-top: 1px solid var(--gold); padding-top: 22px; display: flex; flex-direction: column; min-width: 0; }
 .profile-grid h3 {
-  margin: 0 0 14px; font-family: var(--button); font-weight: 400;
-  font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold);
+  margin: 0 0 14px; font-family: var(--body); font-weight: 500;
+  font-size: 13px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold);
 }
-.profile-grid p { margin: 8px 0; font-size: 15px; }
+.profile-grid .profile-lead {
+  margin: 0 0 10px; font-family: var(--display); font-weight: 500;
+  font-size: clamp(24px, 2.2vw, 30px); line-height: 1.2; color: var(--cream);
+}
+.profile-grid p { margin: 0 0 4px; font-size: 16px; line-height: 1.55; color: rgba(253, 252, 248, 0.8); }
 .profile-grid strong { font-weight: 500; color: var(--cream); }
-.profile-grid .profile-detail { color: var(--muted); font-size: 14px; }
-.profile-grid a, .media-description a, .download-note a { text-decoration: underline; text-underline-offset: 4px; }
+.profile-grid .profile-link {
+  margin-top: 16px; align-self: flex-start;
+  font-size: 15px; color: var(--gold); text-decoration: none;
+  border-bottom: 1px solid rgba(183, 147, 90, 0.45); padding-bottom: 2px;
+}
+.profile-grid .profile-link:hover { border-bottom-color: var(--gold); }
+.media-description a, .download-note a { text-decoration: underline; text-underline-offset: 4px; }
 .profile-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
-.profile-management { margin: 20px 0 0; font-size: 14px; color: var(--muted); }
+.profile-management { margin: 20px 0 0; font-size: 15px; color: rgba(253, 252, 248, 0.75); }
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .hero-actions .btn { background: rgba(0, 0, 0, 0.35); padding: 11px 18px; }
 .hero-actions .btn:hover { background: var(--gold); }
@@ -256,17 +265,18 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
   .profile-grid > div:nth-child(2) { grid-column: 1 / -1; grid-row: 2; }
   .profile-grid > div:last-child { grid-column: 2; grid-row: 1; }
   .profile-heading { flex-direction: column; gap: 12px; }
-  .profile-intro { font-size: 14px; margin: 16px 0 24px; }
-  .profile-grid p { font-size: 14px; }
+  .profile-intro { font-size: 16px; margin: 16px 0 28px; }
+  .profile-grid p { font-size: 15px; }
   .profile-grid h3 { font-size: 12px; }
-  .profile-grid a { font-size: 14px; }
+  .profile-grid .profile-lead { font-size: 22px; }
+  .profile-grid .profile-link { font-size: 14px; }
   .profile-actions { gap: 10px; }
-  .profile-actions .btn { padding: 12px; font-size: 14px; }
-  .profile-management { font-size: 12px; }
+  .profile-actions .btn { padding: 12px 16px; font-size: 14px; }
+  .profile-management { font-size: 14px; }
 }
 @media (max-width: 359px) {
   .profile-grid { gap: 16px; }
-  .profile-actions .btn { padding: 10px; font-size: 13px; }
+  .profile-actions .btn { padding: 11px 14px; font-size: 14px; }
 }
 
 /* ---------- NAV ---------- */
@@ -867,6 +877,11 @@ body.menu-open { overflow: hidden; }
 .reel-meta a { color: var(--muted); text-decoration: underline; text-underline-offset: 4px; }
 .reel-meta a:hover { color: var(--cream); }
 
+@media (max-width: 560px) {
+  .profile-actions { display: grid; grid-template-columns: 1fr 1fr; }
+  .profile-actions .btn { justify-content: center; text-align: center; }
+  .profile-actions .btn.solid { grid-column: 1 / -1; }
+}
 /* ---------- BIOGRAPHY ---------- */
 .bio {
   background:
@@ -1550,10 +1565,11 @@ body.menu-open { overflow: hidden; }
 }
 .btn {
   display: inline-flex; align-items: center; gap: 14px;
-  font-family: var(--button);
+  font-family: var(--body);
   font-style: normal;
+  font-weight: 500;
   font-size: 15px;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
   padding: 14px 28px;
   border: 1px solid var(--cream);
   color: var(--cream);
@@ -1697,25 +1713,27 @@ body.menu-open { overflow: hidden; }
     <div class="profile-heading">
       <h2 id="profile-heading">Yichen Xue, at a glance.</h2>
     </div>
-    <p class="profile-intro">Yichen Xue is a baritone and opera singer currently based in New York, with performances at Arizona Opera, The Glimmerglass Festival, and Aspen Music Festival, and cover credits at Wolf Trap Opera.</p>
+    <p class="profile-intro">Yichen Xue is a baritone based in New York, with recent performances at The Glimmerglass Festival, Arizona Opera, and the Aspen Music Festival, and an upcoming engagement with Virginia Opera.</p>
     <div class="profile-grid">
       <div>
-        <h3>Voice &amp; location</h3>
-        <p><strong>Baritone</strong> · Currently based in New York</p>
-        <p class="profile-detail">Opera, concert &amp; oratorio</p>
-        <a href="#biography">Read the biography</a>
+        <h3>Voice</h3>
+        <p class="profile-lead">Baritone</p>
+        <p>Based in New York</p>
+        <p>Opera, concert &amp; oratorio</p>
+        <a class="profile-link" href="#biography">Read the biography →</a>
       </div>
       <div>
-        <h3>Selected repertoire</h3>
-        <p><strong>Performed</strong> · Dandini, Marcello, Schaunard, Nardo</p>
-        <p class="profile-detail"><strong>Covered</strong> · Sharpless, Amonasro, Schaunard, Ponchel</p>
-        <a href="#repertoire">Explore roles &amp; repertoire</a>
+        <h3>Selected roles</h3>
+        <p class="profile-lead">Dandini · Marcello · Schaunard · Nardo</p>
+        <p><strong>Covered</strong> · Sharpless, Amonasro, Schaunard, Ponchel</p>
+        <a class="profile-link" href="#repertoire">Explore roles &amp; repertoire →</a>
       </div>
       <div>
         <h3>Next engagement</h3>
-        <p><strong>Turandot</strong> · March 2027</p>
-        <p class="profile-detail">Mandarin · also covering Ping<br>Virginia Opera · 2026–27 season</p>
-        <a href="#performance">View engagements</a>
+        <p class="profile-lead">Turandot · Mandarin</p>
+        <p>Also covering Ping</p>
+        <p>Virginia Opera · March 2027</p>
+        <a class="profile-link" href="#performance">View engagements →</a>
       </div>
     </div>
     <div class="profile-actions">
