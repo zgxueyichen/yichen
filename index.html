@@ -1115,14 +1115,15 @@ body.menu-open { overflow: hidden; }
   font-family: var(--display); font-size: clamp(18px, 1.6vw, 24px); letter-spacing: 0; color: var(--cream);
 }
 .tile .cap .meta {
-  font-family: var(--button); font-size: 13px; letter-spacing: 0.02em; color: rgba(253, 252, 248, 0.82);
+  font-family: var(--body); font-size: 15px; font-weight: 500; letter-spacing: 0.01em; color: #D9B77A;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 0, 0, 0.7);
 }
 .tile .cap .detail { font-size: 13px; color: var(--cream); }
 .tile .cap .credit { font-size: 11px; color: rgba(253, 252, 248, 0.72); }
 .hero-photo-credit { position: absolute; bottom: 10px; right: var(--gutter); color: rgba(253, 252, 248, 0.65); font-size: 11px; z-index: 3; }
 .tile::after {
   content: ""; position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.78) 0%, rgba(0,0,0,0.35) 22%, rgba(0,0,0,0) 50%);
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.62) 26%, rgba(0,0,0,0) 55%);
   pointer-events: none; z-index: 1;
 }
 /* Tetris layout: mix of 8-col, 6-col, 12-col landscapes and 4-col portraits.
@@ -1155,7 +1156,7 @@ body.menu-open { overflow: hidden; }
   }
   .tile::after { display: none; }
   .tile .cap .title { font-size: 15px; line-height: 1.25; }
-  .tile .cap .meta { font-size: 12px; }
+  .tile .cap .meta { font-size: 14px; text-shadow: none; color: var(--gold); }
 }
 
 /* ---------- LIGHTBOX ---------- */
@@ -1218,10 +1219,9 @@ body.menu-open { overflow: hidden; }
   color: var(--cream);
 }
 .lightbox-caption .lb-meta {
-  font-family: var(--display);
-  font-style: italic;
-  font-size: clamp(15px, 1.2vw, 18px);
-  color: rgba(253, 252, 248, 0.78);
+  font-family: var(--body);
+  font-size: clamp(15px, 1.2vw, 17px);
+  color: var(--gold);
 }
 .lightbox-caption .lb-detail {
   font-family: var(--body);
