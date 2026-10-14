@@ -660,7 +660,7 @@ body.menu-open { overflow: hidden; }
 }
 .row {
   display: grid;
-  grid-template-columns: 90px minmax(0, 1.5fr) minmax(0, 1fr) minmax(0, 1.1fr) auto;
+  grid-template-columns: 90px minmax(0, 1fr) minmax(0, 1.25fr) minmax(0, 1fr) auto;
   gap: 24px;
   padding: 22px 0;
   border-bottom: 1px solid var(--hair);
@@ -695,17 +695,17 @@ body.menu-open { overflow: hidden; }
   line-height: 1.1;
 }
 .row .role {
-  font-family: var(--body);
+  font-family: var(--display);
   font-style: italic;
-  font-size: 15px;
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.1;
   color: var(--cream);
-  opacity: 0.9;
 }
 .row .house {
-  font-family: var(--button);
-  font-size: 14px;
-  letter-spacing: 0.02em;
-  color: var(--muted);
+  font-family: var(--display);
+  font-size: clamp(22px, 2.2vw, 30px);
+  line-height: 1.1;
+  color: var(--cream);
 }
 @media (max-width: 760px) {
   .row {
@@ -713,7 +713,7 @@ body.menu-open { overflow: hidden; }
     gap: 8px;
     padding: 20px 0;
   }
-  .row .prod { font-size: 22px; }
+  .row .prod, .row .role, .row .house { font-size: 22px; }
   .row .tickets { margin-top: 6px; }
 }
 
@@ -930,7 +930,7 @@ body.menu-open { overflow: hidden; }
 }
 .bio-inset.flip { grid-template-columns: 7fr 5fr; }
 .bio-inset img {
-  width: 100%; aspect-ratio: 4 / 3; object-fit: cover;
+  width: 100%; height: auto;
   filter: contrast(1.02) saturate(0.95);
 }
 .bio-inset .text h3 {
@@ -2145,10 +2145,17 @@ body.menu-open { overflow: hidden; }
 <section class="awards section-pad grain">
   <div class="wrap">
     <div class="section-head reveal">
-      <h2>Honors.</h2>
+      <h2>Honors &amp; Training.</h2>
     </div>
 
     <ol class="timeline reveal" aria-label="Career timeline">
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2027</div>
+          <div class="tl-sub">Virginia Opera</div>
+          <div class="tl-title">Emerging Artist</div>
+        </div>
+      </li>
       <li class="tl-entry">
         <div class="tl-side">
           <div class="tl-year">2026</div>
