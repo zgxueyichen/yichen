@@ -9,7 +9,9 @@
 <meta name="theme-color" content="#0A1128" />
 <link rel="icon" type="image/png" sizes="250x250" href="assets/yichen-monogram-mini.png" />
 <link rel="apple-touch-icon" sizes="250x250" href="assets/yichen-monogram-mini.png" />
-<link rel="preload" as="image" href="assets/optimized/hero-main-1920.webp" imagesrcset="assets/optimized/hero-main-960.webp 960w, assets/optimized/hero-main-1920.webp 1920w" imagesizes="100vw" fetchpriority="high" />
+<link rel="preload" as="image" href="assets/optimized/hero-main-mobile.webp" media="(max-width: 720px)" fetchpriority="high" />
+<link rel="preload" as="image" href="assets/optimized/hero-main-2880.webp" media="(min-width: 721px) and (min-resolution: 1.25dppx), (min-width: 1700px)" fetchpriority="high" />
+<link rel="preload" as="image" href="assets/optimized/hero-main-1920.webp" media="(min-width: 721px) and (max-width: 1699px) and (max-resolution: 1.24dppx)" fetchpriority="high" />
 
 <!-- Open Graph / link preview -->
 <meta property="og:type" content="website" />
@@ -436,6 +438,10 @@ body.menu-open { overflow: hidden; }
   background-size: cover;
   background-position: center;
 }
+/* Sharper cover on large or high-density screens */
+@media (min-width: 721px) and (min-resolution: 1.25dppx), (min-width: 1700px) {
+  .hero-ground { background-image: url("assets/optimized/hero-main-2880.webp"); }
+}
 .hero-vignette {
   position: absolute; inset: 0;
   background:
@@ -574,9 +580,9 @@ body.menu-open { overflow: hidden; }
 
   /* Keep the artist centered in the first mobile view. */
   .hero-ground {
-    background-image: url("assets/optimized/hero-main-960.webp");
+    background-image: url("assets/optimized/hero-main-mobile.webp");
     background-size: auto 110%;
-    background-position: 48% top;
+    background-position: 50% top;
   }
 }
 
