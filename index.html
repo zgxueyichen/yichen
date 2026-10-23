@@ -1624,8 +1624,47 @@ body.menu-open { overflow: hidden; }
   html { scroll-behavior: auto; }
   .reveal, .reveal-ready .reveal { opacity: 1; transform: none; transition: none; }
 }
+
+/* ---------- Opening: stage lights come up (once per visit) ---------- */
+@media (prefers-reduced-motion: no-preference) {
+  html.intro .hero-ground { animation: stageLights 2.4s cubic-bezier(.3,.1,.2,1) both; }
+  html.intro .masthead { animation: introRise 1.4s cubic-bezier(.2,.7,.2,1) 0.9s both; }
+  html.intro .hero-lower,
+  html.intro .hero-photo-credit { animation: introFade 1.2s ease 1.7s both; }
+  html.intro .nav { animation: introFade 1s ease 2s both; }
+}
+@keyframes stageLights {
+  0%   { filter: brightness(0.08) saturate(0.4); transform: scale(1.04); }
+  35%  { filter: brightness(0.35) saturate(0.6); }
+  100% { filter: brightness(1) saturate(1); transform: scale(1); }
+}
+@keyframes introRise {
+  from { opacity: 0; transform: translateY(18px); letter-spacing: 0.06em; }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes introFade { from { opacity: 0; } to { opacity: 1; } }
+
+/* ---------- Honors timeline draws as you scroll ---------- */
+.timeline.tl-anim::before {
+  transform: translateX(-0.5px) scaleY(var(--tl, 0));
+  transform-origin: top center;
+}
+.timeline.tl-anim .tl-entry .tl-side { opacity: 0.22; transition: opacity 700ms ease, transform 700ms cubic-bezier(.2,.7,.2,1); }
+.timeline.tl-anim .tl-entry:nth-child(odd) .tl-side { transform: translateX(-14px); }
+.timeline.tl-anim .tl-entry:nth-child(even) .tl-side { transform: translateX(14px); }
+.timeline.tl-anim .tl-entry::before { opacity: 0.25; }
+.timeline.tl-anim .tl-entry.lit .tl-side { opacity: 1; transform: none; }
+.timeline.tl-anim .tl-entry.lit::before { opacity: 1; animation: diamondPop 900ms cubic-bezier(.2,.7,.2,1); }
+@keyframes diamondPop {
+  0%   { background: var(--black); box-shadow: 0 0 0 0 rgba(183,147,90,0); }
+  35%  { background: var(--gold); box-shadow: 0 0 18px 4px rgba(183,147,90,0.55); transform: translate(-50%,-50%) rotate(45deg) scale(1.35); }
+  100% { background: var(--black); box-shadow: 0 0 0 0 rgba(183,147,90,0); transform: translate(-50%,-50%) rotate(45deg) scale(1); }
+}
 </style>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "7c2a426bfd30435d8ba278f86645f379"}'></script><!-- End Cloudflare Web Analytics -->
+<script>
+try { if (!sessionStorage.getItem('introPlayed') && !matchMedia('(prefers-reduced-motion: reduce)').matches) { document.documentElement.classList.add('intro'); sessionStorage.setItem('introPlayed','1'); } } catch (e) {}
+</script>
 </head>
 <body>
 <a class="skip-link" href="#main-content">Skip to content</a>
@@ -2383,6 +2422,30 @@ body.menu-open { overflow: hidden; }
     }
   }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
   els.forEach((el) => io.observe(el));
+})();
+
+
+/* ---------- Honors timeline draw ---------- */
+(function () {
+  const tl = document.querySelector('.timeline');
+  if (!tl || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  tl.classList.add('tl-anim');
+  const entries = Array.from(tl.querySelectorAll('.tl-entry'));
+  let ticking = false;
+  function update() {
+    ticking = false;
+    const r = tl.getBoundingClientRect();
+    const reach = window.innerHeight * 0.62 - r.top;           // how far the "pen" has travelled
+    const p = Math.max(0, Math.min(1, reach / r.height));
+    tl.style.setProperty('--tl', p.toFixed(4));
+    for (const e of entries) {
+      const mid = e.offsetTop + e.offsetHeight / 2;
+      if (mid <= reach) e.classList.add('lit');
+    }
+  }
+  window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
 })();
 
 /* ---------- Mobile menu ---------- */
