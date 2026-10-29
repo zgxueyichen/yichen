@@ -6,6 +6,9 @@
 <title>Yichen Xue | Opera Singer &amp; Baritone</title>
 <meta name="description" content="Official website of Yichen Xue, a baritone based in New York. Explore performances, repertoire, recordings, and booking information." />
 <link rel="canonical" href="https://yichenxue.com/" />
+<link rel="alternate" hreflang="en" href="https://yichenxue.com/" />
+<link rel="alternate" hreflang="zh-CN" href="https://yichenxue.com/zh/" />
+<link rel="alternate" hreflang="x-default" href="https://yichenxue.com/" />
 <meta name="theme-color" content="#0A1128" />
 <link rel="icon" type="image/png" sizes="250x250" href="assets/yichen-monogram-mini.png" />
 <link rel="apple-touch-icon" sizes="250x250" href="assets/yichen-monogram-mini.png" />
@@ -304,6 +307,14 @@ a:focus-visible, button:focus-visible, summary:focus-visible {
 .nav ul a { transition: opacity 200ms ease; }
 .nav ul a:hover { opacity: 1; }
 .nav ul a:hover::after { transform: scaleX(1); }
+.lang-switch {
+  flex-shrink: 0; margin-right: 16px; padding: 7px 12px;
+  font-family: var(--body); font-size: 14px; font-weight: 500; letter-spacing: 0.04em; line-height: 1;
+  color: var(--cream); opacity: 0.85; border: 1px solid var(--hair);
+  transition: opacity 200ms ease, border-color 200ms ease;
+}
+.lang-switch:hover { opacity: 1; border-color: var(--gold); }
+@media (max-width: 1050px) { .lang-switch { margin-left: auto; margin-right: 12px; } }
 .nav .inquiry {
   font-family: var(--button);
   font-style: normal;
@@ -1644,6 +1655,7 @@ body.menu-open { overflow: hidden; }
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <a class="lang-switch" href="/zh/" lang="zh-CN" hreflang="zh-CN">中文</a>
   <a class="inquiry" href="#contact">Inquiry</a>
   <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-controls="mobile-menu" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -1659,6 +1671,7 @@ body.menu-open { overflow: hidden; }
     <li><a href="#biography">Biography</a></li>
     <li><a href="#gallery">Gallery</a></li>
     <li><a href="#contact">Contact</a></li>
+    <li><a href="/zh/" lang="zh-CN" hreflang="zh-CN">中文</a></li>
     <li><a href="#contact" class="mobile-menu-cta">Inquiry</a></li>
   </ul>
 </aside>
