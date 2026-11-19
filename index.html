@@ -1626,7 +1626,7 @@ body.menu-open { overflow: hidden; }
 }
 
 /* ---------- LIGHT / DARK RHYTHM ---------- */
-:root { --ink:#0A1128; --paper:#EEE9DF; --bronze:#8A6A35; }
+:root { --ink:#0A1128; --paper:#F4F1EA; --bronze:#8A6A35; }
 .light {
   --cream: var(--ink);
   --muted: rgba(10,17,40,0.64);
@@ -1639,13 +1639,11 @@ body.menu-open { overflow: hidden; }
 .light .btn:hover { color: var(--paper); }
 .light ::selection { background: rgba(10,17,40,0.12); }
 /* one calm dark: solid navy instead of gradients */
-.reel, .records, .gallery, .inquiry-sec { background: var(--navy) !important; }
+.perf, .reel, .records, .gallery, .inquiry-sec { background: var(--navy) !important; }
 .footer { background: #070C1C !important; }
 .inquiry-sec h2 { color: var(--cream) !important; }
 .reel + .records { padding-top: 0; }
 .bio.light { padding-bottom: 40px; }
-.light .row .prod { color: var(--ink); }
-.light + .light:not(.worked) { border-top: 1px solid rgba(10,17,40,0.10); }
 .bio + .worked { padding-top: 40px; }
 </style>
 <!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "7c2a426bfd30435d8ba278f86645f379"}'></script><!-- End Cloudflare Web Analytics -->
@@ -1745,7 +1743,7 @@ body.menu-open { overflow: hidden; }
 </section>
 
 <!-- ===================== PERFORMANCE ===================== -->
-<section class="light perf section-pad" id="performance" aria-labelledby="engagements-heading">
+<section class="perf section-pad grain" id="performance" aria-labelledby="engagements-heading">
   <div class="wrap">
     <div class="section-head reveal">
       <h2 id="engagements-heading">Engagements.</h2>
@@ -2045,102 +2043,6 @@ body.menu-open { overflow: hidden; }
   </div>
 </section>
 
-<!-- ===================== AWARDS / EDUCATION ===================== -->
-<section class="light awards section-pad" id="honors">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <h2>Honors &amp; Training.</h2>
-    </div>
-
-    <ol class="timeline reveal" aria-label="Career timeline">
-      <li class="tl-entry">
-        <div class="tl-side">
-          <div class="tl-year">2027</div>
-          <div class="tl-sub">Virginia Opera</div>
-          <div class="tl-title">Emerging Artist</div>
-        </div>
-      </li>
-      <li class="tl-entry">
-        <div class="tl-side">
-          <div class="tl-year">2026</div>
-          <div class="tl-sub">Glimmerglass Festival</div>
-          <div class="tl-title">Resident Artist</div>
-        </div>
-      </li>
-      <li class="tl-entry">
-        <div class="tl-side">
-          <div class="tl-year">2025</div>
-          <div class="tl-sub">Aspen Music Festival</div>
-          <div class="tl-title">Renée Fleming Fellow</div>
-        </div>
-      </li>
-      <li class="tl-entry">
-        <div class="tl-side">
-          <div class="tl-year">2025</div>
-          <div class="tl-sub">Met Opera Laffont</div>
-          <div class="tl-title">Encouragement Award</div>
-        </div>
-      </li>
-      <li class="tl-entry">
-        <div class="tl-side">
-          <div class="tl-year">2025 · 26</div>
-          <div class="tl-sub">Martorella Voice Scholarship</div>
-          <div class="tl-title">National Finalist</div>
-        </div>
-      </li>
-      <li class="tl-entry">
-        <div class="tl-side">
-          <div class="tl-year">2024 · 26</div>
-          <div class="tl-sub">Arizona Opera</div>
-          <div class="tl-title">Studio Artist</div>
-        </div>
-      </li>
-      <li class="tl-entry">
-        <div class="tl-side">
-          <div class="tl-year">2024</div>
-          <div class="tl-sub">Wolf Trap Opera</div>
-          <div class="tl-title">Studio Artist</div>
-        </div>
-      </li>
-      <li class="tl-entry">
-        <div class="tl-side">
-          <div class="tl-year">2024</div>
-          <div class="tl-sub">Gerda Lissner Foundation</div>
-          <div class="tl-title">Grant Winner</div>
-        </div>
-      </li>
-      <li class="tl-entry">
-        <div class="tl-side">
-          <div class="tl-year">2024</div>
-          <div class="tl-sub">Career Bridges</div>
-          <div class="tl-title">Grant Winner</div>
-        </div>
-      </li>
-      <li class="tl-entry">
-        <div class="tl-side">
-          <div class="tl-year">2023</div>
-          <div class="tl-sub">Opera Index</div>
-          <div class="tl-title">Emerging Artist Award</div>
-        </div>
-      </li>
-      <li class="tl-entry">
-        <div class="tl-side">
-          <div class="tl-year">2019 — 23</div>
-          <div class="tl-sub">Hunter College–CUNY</div>
-          <div class="tl-title">MA Vocal Performance</div>
-        </div>
-      </li>
-      <li class="tl-entry">
-        <div class="tl-side">
-          <div class="tl-year">2014 — 18</div>
-          <div class="tl-sub">Manhattan School of Music</div>
-          <div class="tl-title">BM Voice</div>
-        </div>
-      </li>
-    </ol>
-  </div>
-</section>
-
 <!-- ===================== GALLERY ===================== -->
 <section class="gallery section-pad grain" id="gallery" aria-labelledby="gallery-heading">
   <div class="wrap">
@@ -2298,6 +2200,101 @@ body.menu-open { overflow: hidden; }
   </div>
 </section>
 
+<!-- ===================== AWARDS / EDUCATION ===================== -->
+<section class="light awards section-pad" id="honors">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <h2>Honors &amp; Training.</h2>
+    </div>
+
+    <ol class="timeline reveal" aria-label="Career timeline">
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2027</div>
+          <div class="tl-sub">Virginia Opera</div>
+          <div class="tl-title">Emerging Artist</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2026</div>
+          <div class="tl-sub">Glimmerglass Festival</div>
+          <div class="tl-title">Resident Artist</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2025</div>
+          <div class="tl-sub">Aspen Music Festival</div>
+          <div class="tl-title">Renée Fleming Fellow</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2025</div>
+          <div class="tl-sub">Met Opera Laffont</div>
+          <div class="tl-title">Encouragement Award</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2025 · 26</div>
+          <div class="tl-sub">Martorella Voice Scholarship</div>
+          <div class="tl-title">National Finalist</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2024 · 26</div>
+          <div class="tl-sub">Arizona Opera</div>
+          <div class="tl-title">Studio Artist</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2024</div>
+          <div class="tl-sub">Wolf Trap Opera</div>
+          <div class="tl-title">Studio Artist</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2024</div>
+          <div class="tl-sub">Gerda Lissner Foundation</div>
+          <div class="tl-title">Grant Winner</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2024</div>
+          <div class="tl-sub">Career Bridges</div>
+          <div class="tl-title">Grant Winner</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2023</div>
+          <div class="tl-sub">Opera Index</div>
+          <div class="tl-title">Emerging Artist Award</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2019 — 23</div>
+          <div class="tl-sub">Hunter College–CUNY</div>
+          <div class="tl-title">MA Vocal Performance</div>
+        </div>
+      </li>
+      <li class="tl-entry">
+        <div class="tl-side">
+          <div class="tl-year">2014 — 18</div>
+          <div class="tl-sub">Manhattan School of Music</div>
+          <div class="tl-title">BM Voice</div>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
 
 <!-- ===================== INQUIRY ===================== -->
 <section class="inquiry-sec section-pad grain" id="contact">
